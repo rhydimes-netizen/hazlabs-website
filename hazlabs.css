@@ -1,0 +1,60 @@
+body { margin: 0; font-family: var(--font-sans); background: var(--paper); color: var(--ink); }
+.hl-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; padding: var(--space-5); }
+
+.hl-btn { display: inline-flex; gap: var(--space-2); align-items: center; font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: 16px; line-height: 1.2;
+  padding: var(--space-3) var(--space-5); border: var(--border-hairline) solid var(--ink); border-radius: var(--radius-0);
+  background: transparent; color: var(--ink); cursor: pointer; }
+.hl-btn:hover { background: var(--ink-tint); }
+.hl-btn-primary { background: var(--ink); color: var(--on-ink); }
+.hl-btn-primary:hover { background: var(--ink-deep); border-color: var(--ink-deep); }
+.hl-btn-arrow { font-family: var(--font-sans); font-style: normal; }
+.hl-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.hl-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.hl-oval { display: inline-block; padding: var(--space-1) var(--space-5); border: var(--border-hairline) solid var(--ink); border-radius: 50%;
+  font-family: var(--font-serif); font-style: italic; font-size: 16px; line-height: 1.2; color: var(--ink); }
+.hl-oval-lg { font-size: 32px; line-height: 0.9; padding: var(--space-3) var(--space-8); }
+
+.hl-statement { margin: 0; max-width: 18em; font-family: var(--font-sans); font-weight: 400; font-size: 52px; line-height: 1; color: var(--ink); }
+.hl-statement em { font-family: var(--font-serif); font-style: italic; }
+.hl-statement-md { font-size: 32px; line-height: 1.1; }
+
+.hl-cross { flex: none; color: var(--violet); }
+.hl-ticket { display: flex; flex-direction: column; width: 288px; border-radius: var(--radius-ticket); box-shadow: var(--shadow-ticket); background: var(--paper); color: var(--ink); overflow: hidden; }
+.hl-ticket-main { flex: 1; padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+.hl-ticket-ink .hl-ticket-main { background: var(--ink); color: var(--on-ink); }
+.hl-ticket-ink .hl-cross { color: var(--on-ink); }
+.hl-ticket-row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); }
+.hl-ticket-code { font-family: var(--font-mono); font-weight: 700; font-size: 13px; line-height: 13px; }
+.hl-ticket-title { margin: var(--space-2) 0 0; font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: 52px; line-height: 1; }
+.hl-ticket-summary { margin: 0; font-size: 16px; line-height: 1.2; }
+.hl-ticket-list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-1); font-size: 15px; line-height: 1.2; }
+.hl-ticket-list li::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: var(--space-2); border-radius: var(--radius-full); background: var(--violet); }
+.hl-ticket-ink .hl-ticket-list li::before { background: var(--on-ink); }
+.hl-ticket-tearnote { font-family: var(--font-mono); font-weight: 500; font-size: 12px; line-height: 12px; text-transform: uppercase; margin-top: auto; padding-top: var(--space-2); }
+.hl-ticket-tear { position: relative; height: 0; border-top: var(--border-tear) dashed var(--ink); margin: 0 var(--space-3); }
+.hl-ticket-stub { padding: var(--space-4) var(--space-5); display: grid; gap: var(--space-3); background: var(--paper); color: var(--ink); }
+.hl-ticket-label { font-family: var(--font-mono); font-weight: 500; font-size: 13px; line-height: 18px; text-transform: uppercase; }
+.hl-ticket-value { font-family: var(--font-mono); font-weight: 700; font-size: 15px; }
+.hl-barcode { display: flex; height: 40px; overflow: hidden; }
+.hl-barcode span { flex: none; background: var(--ink); }
+
+.hl-icon { flex: none; }
+.hl-contact { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-8); align-items: center; padding: var(--space-3) var(--space-8); }
+.hl-contact-ink { background: var(--ink); color: var(--on-ink); }
+.hl-contact-deep { background: var(--ink-deep); color: var(--on-ink); }
+.hl-contact-item { display: inline-flex; gap: var(--space-2); align-items: center; color: inherit; text-decoration: none; font-family: var(--font-sans); font-size: 15px; line-height: 1.2; }
+a.hl-contact-item:hover { text-decoration: underline; text-underline-offset: 3px; }
+a.hl-contact-item:focus-visible { outline: 2px solid var(--on-ink); outline-offset: 2px; }
+.hl-contact-status { display: inline-flex; gap: var(--space-2); align-items: center; font-family: var(--font-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; }
+.hl-contact-status i { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--signal); }
+
+.hl-lh { background: var(--paper); color: var(--ink); }
+.hl-lh-top { display: flex; gap: var(--space-8); align-items: center; padding: var(--space-5) var(--space-8); }
+.hl-lh-logo { flex: none; background: var(--logo-ground); }
+.hl-lh-logo img { display: block; height: 104px; width: auto; }
+.hl-lh-info { flex: 1; display: grid; gap: var(--space-1); font-family: var(--font-sans); font-size: 14px; line-height: 1.3; }
+.hl-lh-code { font-family: var(--font-mono); font-weight: 700; font-size: 13px; line-height: 18px; text-transform: uppercase; margin-bottom: var(--space-1); }
+.hl-lh-web { font-family: var(--font-serif); font-style: italic; font-size: 18px; margin-top: var(--space-1); }
+.hl-lh-ref { align-self: flex-start; display: grid; justify-items: end; gap: var(--space-2); font-family: var(--font-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; }
+.hl-lh-tear { border-top: var(--border-tear) dashed var(--ink); margin: 0 var(--space-8) var(--space-3); }

@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haz Labs | Environmental consulting, pollution control and waste disposal, Tamil Nadu</title>
+<meta name="description" content="Haz Labs helps industries in Tamil Nadu obtain TNPCB consents and authorisations, designs and installs pollution control machinery, and arranges licensed industrial waste disposal.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="hazlabs.css">
+<style>
+@font-face{font-family:"Vazirmatn";src:url("fonts/Vazirmatn-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("fonts/Vazirmatn-500.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Instrument Serif";src:url("fonts/InstrumentSerif-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Fira Code";src:url("fonts/FiraCode-500.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Fira Code";src:url("fonts/FiraCode-700.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Bebas Neue";src:url("fonts/BebasNeue-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+:root{--paper:#fff;--paper-soft:#f6f6f8;--haze:#e3e0fb;--ink:#3f33b4;--ink-deep:#221c66;--ink-muted:#6159c9;--ink-tint:#ecebf9;--on-ink:#fff;--rule:#c6c2ee;--violet:#773fd9;--signal:#ffcb3a;--logo-ground:#fff;--focus:#773fd9;
+--font-sans:Vazirmatn,system-ui,sans-serif;--font-serif:"Instrument Serif",Georgia,serif;--font-mono:"Fira Code",ui-monospace,Menlo,monospace;--font-display:"Bebas Neue",Impact,sans-serif;
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;--radius-0:0;--radius-ticket:20px;--radius-full:999px;--shadow-ticket:5px 5px 40px 0 rgba(0,0,0,.12);--border-hairline:1px;--border-tear:2px;--gutter:clamp(16px,5vw,64px)}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);font-size:16px;line-height:1.4}
+a{color:var(--ink)}a:hover{color:var(--ink-deep)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+img{max-width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:64px var(--gutter)}
+.stack{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.split{display:flex;flex-wrap:wrap;gap:24px 64px;align-items:flex-end;justify-content:space-between}
+.split>.main{flex:999 1 520px;min-width:0}.split>.side{flex:1 1 300px;margin:0}
+.mono{font-family:var(--font-mono);font-weight:500;font-size:13px;line-height:18px;text-transform:uppercase}
+.code{font-family:var(--font-mono);font-weight:700;font-size:13px;line-height:1.2}
+.serif{font-family:var(--font-serif);font-style:italic;font-weight:400}
+.muted{color:var(--ink-muted)}
+.haze{background:linear-gradient(var(--haze),var(--paper))}.soft{background:var(--paper-soft)}.white{background:var(--paper)}
+section{scroll-margin-top:80px}
+.cross{flex:none;color:var(--violet)}
+.ticket{background:var(--paper);border-radius:20px;box-shadow:var(--shadow-ticket);display:flex;flex-direction:column;color:var(--ink);text-decoration:none}
+.ticket .tear{border-top:2px dashed var(--ink);margin:0 12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hl-statement{max-width:none}
+.btn-link{min-height:32px;padding:4px 0;border:0;background:transparent;color:var(--ink);cursor:pointer;font-family:var(--font-mono);font-weight:500;font-size:12px;text-transform:uppercase;text-decoration:underline;text-underline-offset:3px}
+.toggle{border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
+.toggle:hover{background:var(--ink-tint)}
+.toggle[aria-pressed="true"],.toggle[aria-selected="true"]{background:var(--ink);color:var(--on-ink)}
+.chip{min-height:44px;padding:6px 18px;border-radius:999px;font-family:var(--font-serif);font-style:italic;font-size:18px;line-height:1.2}
+.input{min-height:42px;padding:8px 12px;border:1px solid var(--ink);border-radius:0;background:#fff;color:var(--ink);font:inherit;font-size:16px;width:100%}
+
+/* header */
+header.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--rule)}
+header.top .bar{max-width:1280px;margin:0 auto;padding:10px var(--gutter);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 32px}
+header.top nav{display:flex;flex-wrap:wrap;gap:4px 22px;align-items:center}
+header.top nav a.nl{text-decoration:none;padding:12px 0}header.top nav a.nl:hover{text-decoration:underline;text-underline-offset:4px}
+.logo{display:block;background:#fff;padding:4px}.logo img{display:block;height:48px;width:auto}
+@media (max-width:900px){header.top{position:static}}
+
+/* hero */
+.hero .wrap{padding-top:clamp(40px,7vw,96px)}
+.hero p.lead{margin:0;max-width:36em;font-size:18px}
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:1px solid var(--ink);margin-top:56px}
+.figures>div{padding:24px 24px 0 0;display:flex;flex-direction:column;gap:8px}
+.fig{font-family:var(--font-display);font-size:64px;line-height:.95}
+.dot{width:10px;height:10px;border-radius:999px;background:var(--signal);margin-top:6px;display:inline-block}
+
+/* lines */
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.lines a{padding:20px;gap:16px;transition:transform .15s}.lines a:hover{transform:translateY(-3px)}
+.lines a.ink{background:var(--ink);color:#fff}
+.lines .t{font-size:40px;line-height:1}.lines .foot{margin-top:auto;padding-top:12px;border-top:2px dashed currentColor;font-size:12px}
+
+/* engineering tickets */
+.eng-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:stretch}
+.eng-grid .hl-ticket{width:auto;height:100%}
+.acc{border-top:1px solid var(--ink)}
+.acc>div{border-bottom:1px solid var(--ink)}
+.acc button{width:100%;min-height:56px;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 16px;border:0;background:transparent;color:var(--ink);cursor:pointer;text-align:left}
+.acc button:hover{background:var(--ink-tint)}
+.acc .name{font-size:22px;line-height:1.2}
+.acc .body{padding:0 16px 24px;display:flex;flex-wrap:wrap;gap:16px 48px}.acc .body p{flex:1 1 320px;margin:0}
+
+/* consulting */
+.picker{display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+.picker .list{flex:1 1 300px;display:flex;flex-direction:column;border-top:1px solid var(--ink)}
+.picker .list button{display:flex;gap:16px;align-items:center;justify-content:space-between;min-height:56px;padding:12px 16px;border:0;border-bottom:1px solid var(--ink);text-align:left;font:inherit;font-size:16px;line-height:1.2}
+.picker article{flex:999 1 520px;min-width:0}
+.big-title{margin:0;font-size:52px;line-height:1}
+@media (max-width:640px){.hl-statement{font-size:36px}.hl-statement-md{font-size:26px}.big-title{font-size:40px}}
+
+/* waste */
+.streams{flex:999 1 520px;min-width:0;background:var(--ink-tint);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:20px}
+.streams .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.streams a{min-height:64px;display:flex;gap:12px;align-items:center;padding:12px 16px;background:#fff;border:1px solid var(--ink);text-decoration:none;line-height:1.2}
+.streams a:hover{background:var(--haze)}
+.vdot{flex:none;width:10px;height:10px;border-radius:999px;background:var(--violet)}
+.partners li{display:flex;gap:16px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--rule);line-height:1.2}
+
+/* catalogue */
+.depts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border:1px solid var(--ink)}
+.depts button{min-height:88px;padding:16px 20px;border:0;border-right:1px solid var(--ink);text-align:left;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.depts .n{font-size:28px;line-height:1}
+.cat-wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.cat-main{flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.cat-tools{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.cat-head{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;background:var(--ink);color:#fff;font-size:12px}
+.cat-list{list-style:none;margin:-16px 0 0;padding:0;border-bottom:1px solid var(--ink)}
+.cat-list li{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:16px;border-top:1px solid var(--rule)}
+.cat-list li:hover{background:#fff}
+.cat-list .l{flex:999 1 380px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.cat-list .r{flex:1 1 260px;display:flex;gap:16px;align-items:center;justify-content:flex-end}
+.cat-list .meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end;font-size:12px}
+.add{min-width:112px;min-height:44px;padding:10px 16px;font-family:var(--font-serif);font-style:italic;font-size:16px}
+#docket{flex:1 1 340px;min-width:0;position:sticky;top:96px;scroll-margin-top:96px}
+@media (max-width:900px){#docket{position:static}}
+.dk-list{list-style:none;margin:0;padding:0}
+.dk-list li{padding:12px 0;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
+.dk-list label{display:flex;gap:8px;align-items:center}
+.dk-list input{flex:1;min-width:0;min-height:40px;padding:6px 10px;border:1px solid var(--ink);border-radius:0;color:var(--ink);font-family:var(--font-mono);font-size:14px}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.form label{display:flex;flex-direction:column;gap:4px}.form .full{grid-column:1/-1}
+.form .input{min-height:40px;padding:6px 10px}
+.empty{margin:0;padding:16px;background:var(--ink-tint);font-size:15px}
+
+/* regs */
+.regs .r{display:flex;flex-wrap:wrap;gap:6px 24px;padding:14px 16px;border-top:1px solid var(--rule);align-items:baseline}
+.regs .ref{flex:0 0 120px}.regs .nm{flex:999 1 320px;min-width:0}.regs .nt{flex:1 1 280px;min-width:0;font-size:14px}
+
+/* photos */
+.drive{flex:1 1 320px;min-width:0;transition:transform .15s}
+.drive:hover{transform:translateY(-4px)}
+.drive .disc{width:128px;height:128px;border-radius:999px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.drive:hover .disc{background:var(--ink-deep)}
+
+/* clients */
+.clients{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.clients li{background:#fff;border:1px solid var(--rule);height:128px;padding:20px 24px;display:flex;align-items:center;justify-content:center}
+.clients img{max-height:72px;object-fit:contain}
+
+footer{background:var(--ink-deep);color:#fff}
+footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 24px;display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;font-size:12px;border-top:1px solid var(--ink-muted)}
+.hl-contact{max-width:1280px;margin:0 auto;padding:16px var(--gutter)}
+</style>
+</head>
+<body>
+<a href="#main" class="sr">Skip to content</a>
+
+<header class="top">
+<div class="bar">
+<a class="logo" href="#top" aria-label="Haz Labs, back to top"><img src="img/hazlabs-lockup.png" alt="Haz Labs" width="140" height="48"></a>
+<nav aria-label="Sections" class="mono">
+<a class="nl" href="#about">About</a>
+<a class="nl" href="#engineering">Engineering</a>
+<a class="nl" href="#consulting">Consulting</a>
+<a class="nl" href="#waste">Waste disposal</a>
+<a class="nl" href="#catalogue">Catalogue</a>
+<a class="nl" href="#regulations">Regulations</a>
+<a class="nl" href="#photos">Site photos</a>
+<a class="nl" href="#customers">Customers</a>
+<a class="hl-btn hl-btn-secondary" href="#docket" style="text-decoration:none;text-transform:none">Docket <span class="code" id="dk-count-nav">[0]</span></a>
+<a class="hl-btn hl-btn-primary" href="#contact" style="text-decoration:none;text-transform:none">Get in touch <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+
+<section id="top" class="hero haze">
+<div class="wrap">
+<div class="stack" style="gap:32px">
+<span class="hl-oval">Company profile 2026</span>
+<h1 class="hl-statement">Your consent isn’t paperwork.<em> It’s your licence to operate.</em></h1>
+<p class="lead">Haz Labs is a provider of engineering consulting services, pollution control machinery and industrial waste disposal support. We help industries obtain their licences from the Pollution Control Boards (TNPCB and CPCB) and stay compliant once they have them.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<a class="hl-btn hl-btn-primary" href="#catalogue" style="text-decoration:none">Browse the catalogue <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
+<a class="hl-btn hl-btn-secondary" href="#contact" style="text-decoration:none">Talk to us</a>
+</div>
+</div>
+<div class="figures">
+<div><div style="display:flex;gap:8px;align-items:flex-start"><span class="fig">6</span><span class="dot" aria-hidden="true"></span></div><div class="mono">Consents and authorisations we file</div></div>
+<div><span class="fig">4</span><div class="mono">Engineering lines, designed and commissioned</div></div>
+<div><span class="fig">1–10</span><div class="mono">KLD effluent treatment capacity</div></div>
+<div><span class="fig">7</span><div class="mono">Licensed waste disposal partners</div></div>
+</div>
+</div>
+</section>
+
+<section id="about" class="white">
+<div class="wrap" style="display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-wrap:wrap;gap:24px 64px;align-items:flex-start">
+<div style="flex:1 1 240px"><span class="hl-oval hl-oval-lg">About us</span></div>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<h2 class="hl-statement hl-statement-md">Technical consulting, design, implementation and maintenance →<em> one team, from licence to pollution control system.</em></h2>
+<p class="muted" style="margin:0;max-width:40em">We specialise in facilitating regulatory compliance and obtaining licences from the Tamil Nadu Pollution Control Board (TNPCB) and the Central Pollution Control Board (CPCB). Our work runs in three lines.</p>
+</div>
+</div>
+<div class="lines">
+<a href="#engineering" class="ticket ink"><span class="code">HZL/ENG.01</span><span class="serif t">Engineering and commissioning</span><span style="font-size:15px;line-height:1.5">Effluent treatment plants · Dust collectors and scrubbers · Electrical control and distribution boxes · Air and water quality monitoring</span><span class="mono foot">Explore engineering →</span></a>
+<a href="#consulting" class="ticket"><span class="code">HZL/SVC.02</span><span class="serif t">Technical consulting</span><span style="font-size:15px;line-height:1.5">Consent to Establish (CTE) · Consent to Operate (CTO) · Hazardous waste · Biomedical waste · Plastic waste authorisation · EPR (PIBO and PWP)</span><span class="mono foot">Explore consulting →</span></a>
+<a href="#waste" class="ticket"><span class="code">HZL/WST.03</span><span class="serif t">Waste disposal support</span><span style="font-size:15px;line-height:1.5">Industrial oils and lubricants · Solvents and media · Hazardous waste · Plastic waste · Discarded chemical containers and barrels · Metal scrap</span><span class="mono foot">Explore waste disposal →</span></a>
+</div>
+</div>
+</section>
+
+<section id="engineering" class="haze">
+<div class="wrap" style="display:flex;flex-direction:column;gap:40px">
+<div class="split">
+<div class="main stack"><span class="hl-oval">Engineering services</span><h2 class="hl-statement hl-statement-md">We assess your site and standards first →<em> then design, install and commission.</em></h2></div>
+<p class="side">Our engineers and environmental specialists size every system to your requirements, site conditions and the regulatory standard it must meet.</p>
+</div>
+<div class="eng-grid" id="eng-tickets"></div>
+<div class="acc" id="eng-acc"></div>
+</div>
+</section>
+
+<section id="consulting" class="soft">
+<div class="wrap" style="display:flex;flex-direction:column;gap:40px">
+<div class="stack"><span class="hl-oval">Consulting services</span><h2 class="hl-statement hl-statement-md">Pick the consent you need →<em> we’ll walk you through it.</em></h2></div>
+<div class="picker">
+<div class="list" role="group" aria-label="Consulting services" id="svc-list"></div>
+<article class="ticket" aria-live="polite">
+<div style="padding:32px;display:flex;flex-direction:column;gap:20px">
+<div class="row code"><span id="svc-code"></span><svg class="cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div>
+<h3 class="serif big-title" id="svc-name"></h3>
+<p style="margin:0;font-size:18px" id="svc-p1"></p>
+<p class="muted" style="margin:0;line-height:1.5" id="svc-p2"></p>
+</div>
+<div class="tear" aria-hidden="true"></div>
+<div style="padding:16px 32px 24px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center">
+<div style="display:flex;flex-direction:column;gap:4px"><span class="mono">Issued by</span><span class="code" style="font-size:15px" id="svc-by"></span></div>
+<a class="hl-btn hl-btn-secondary" id="svc-mail" href="#" style="text-decoration:none">Ask about this <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="waste" class="white">
+<div class="wrap" style="display:flex;flex-direction:column;gap:40px">
+<div class="stack"><span class="hl-oval">Industrial waste disposal support</span><h2 class="hl-statement hl-statement-md">Licensed processors only →<em> so your waste leaves the gate compliant.</em></h2>
+<p class="muted" style="margin:0;max-width:44em">Proper disposal through licensed waste processors keeps you compliant. We help companies dispose of industrial waste responsibly through our network of trusted disposal partners.</p></div>
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:stretch">
+<div class="streams"><div class="mono">Streams we handle · tap one to ask</div><div class="grid" id="streams"></div></div>
+<div class="ticket" style="flex:1 1 320px;min-width:0">
+<div class="row" style="padding:24px 24px 16px"><span class="serif" style="font-size:32px;line-height:1">Our disposal partners</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div>
+<div class="tear" aria-hidden="true"></div>
+<ul class="partners" id="partners" style="list-style:none;margin:0;padding:8px 24px 24px"></ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="catalogue" class="soft">
+<div class="wrap" style="display:flex;flex-direction:column;gap:32px">
+<div class="split">
+<div class="main stack"><span class="hl-oval">Catalogue</span><h2 class="hl-statement hl-statement-md">Browse by product code, add what you need →<em> we’ll quote the whole docket.</em></h2></div>
+<p class="side">Switch departments without losing your picks. Add a capacity for each code in the docket, then send it to us as one request.</p>
+</div>
+<div class="depts" role="tablist" aria-label="Departments" id="depts"></div>
+<div class="cat-wrap">
+<div class="cat-main">
+<div class="cat-tools">
+<div role="group" aria-label="Filter by category" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center" id="cats"></div>
+<label style="display:flex;flex-direction:column;gap:4px;flex:0 1 280px;min-width:200px"><span class="mono" style="font-size:12px">Search codes</span><input class="input" type="search" id="q" placeholder="e.g. ETP, scrubber, EPR"></label>
+</div>
+<div class="cat-head mono"><span id="ns"></span><span id="shown"></span></div>
+<ul class="cat-list" id="rows"></ul>
+<p class="mono" id="norows" hidden style="margin:0;padding:24px 16px">No codes match. Clear the search or pick another filter.</p>
+</div>
+<aside id="docket" class="ticket" aria-label="Quote docket">
+<div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+<div class="row code"><span>HZL/DOC.QT-DRAFT</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div>
+<div class="row" style="align-items:flex-end"><h3 class="serif" style="margin:0;font-size:44px;line-height:1">Your docket</h3><span class="fig" style="font-size:56px;line-height:.9" id="dk-count">00</span></div>
+<p class="empty" id="dk-empty">Empty for now. Add a code from the catalogue to start a quote.</p>
+<ul class="dk-list" id="dk-list"></ul>
+</div>
+<div class="tear" aria-hidden="true"></div>
+<div style="padding:16px 20px 20px;display:flex;flex-direction:column;gap:12px">
+<div id="dk-form" hidden style="display:flex;flex-direction:column;gap:12px">
+<div class="form">
+<label><span class="mono" style="font-size:12px">Name</span><input class="input" data-f="name" autocomplete="name"></label>
+<label><span class="mono" style="font-size:12px">Company</span><input class="input" data-f="company" autocomplete="organization"></label>
+<label><span class="mono" style="font-size:12px">Phone</span><input class="input" type="tel" data-f="phone" autocomplete="tel"></label>
+<label><span class="mono" style="font-size:12px">Site (district)</span><input class="input" data-f="site"></label>
+<label class="full"><span class="mono" style="font-size:12px">Notes</span><textarea class="input" rows="3" data-f="notes" style="resize:vertical"></textarea></label>
+</div>
+<a class="hl-btn hl-btn-primary" id="quote" href="#" style="text-decoration:none;justify-content:center">Send quote request <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
+<button type="button" class="btn-link" id="dk-clear" style="align-self:flex-start">Clear docket</button>
+</div>
+<span class="mono" style="font-size:12px;line-height:16px">Opens your mail app with the docket filled in</span>
+</div>
+</aside>
+</div>
+</div>
+</section>
+
+<section id="regulations" class="white">
+<div class="wrap" style="display:flex;flex-direction:column;gap:32px">
+<div class="split">
+<div class="main stack"><span class="hl-oval">Regulatory index</span><h2 class="hl-statement hl-statement-md">The statutes and orders we work under →<em> cross-referenced to the catalogue.</em></h2></div>
+<p class="side muted" style="font-size:14px">Always verify against the latest official gazette before submission.</p>
+</div>
+<div role="tablist" aria-label="Regulation groups" style="display:flex;flex-wrap:wrap;gap:8px" id="reg-tabs"></div>
+<div class="regs" style="border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)">
+<div class="mono muted" style="padding:10px 16px;font-size:12px" id="reg-issuer"></div>
+<div id="regs"></div>
+</div>
+</div>
+</section>
+
+<section id="photos" class="haze">
+<div class="wrap" style="display:flex;flex-wrap:wrap;gap:48px;align-items:center">
+<div class="stack" style="flex:999 1 520px;min-width:0"><span class="hl-oval">Site photos</span><h2 class="hl-statement hl-statement-md">See the work on the ground →<em> plants, collectors and panels as built.</em></h2>
+<p class="muted" style="margin:0;max-width:38em">Our photo library from client sites is kept in a shared Google Drive folder. It opens in a new tab.</p></div>
+<a class="ticket drive" href="https://drive.google.com/drive/folders/1gQ8RXjNvroAOC5CQYkNG093GfSn05MTu?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Open Haz Labs site photos on Google Drive (opens in a new tab)">
+<div style="padding:20px;display:flex;flex-direction:column;gap:24px;align-items:center">
+<div class="row code" style="align-self:stretch"><span>HZL/IMG.01-SITE</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div>
+<span class="disc" aria-hidden="true"><svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 8h3.5l1.5-2.5h8L17.5 8H21v11H3z"/><circle cx="12" cy="13.5" r="3.5"/></svg></span>
+<span class="serif" style="font-size:32px;line-height:1;text-align:center">Browse site photos</span>
+</div>
+<div class="tear" aria-hidden="true"></div>
+<div class="row" style="padding:16px 20px"><span class="mono">Google Drive folder</span><span class="code">Open ↗</span></div>
+</a>
+</div>
+</section>
+
+<section id="customers" class="soft">
+<div class="wrap" style="display:flex;flex-direction:column;gap:40px">
+<div class="stack"><span class="hl-oval">Our customers</span><h2 class="hl-statement hl-statement-md">Beverages, packaging, agrochemicals, mobility and healthcare →<em> all running compliant.</em></h2></div>
+<ul class="clients">
+<li><img src="img/clients/asian-beverage.png" alt="Asian Beverage" loading="lazy"></li>
+<li><img src="img/clients/jyothy-labs.png" alt="Jyothy Labs" loading="lazy"></li>
+<li><img src="img/clients/amcor.png" alt="Amcor" loading="lazy"></li>
+<li><img src="img/clients/tagros.png" alt="Tagros" loading="lazy"></li>
+<li><img src="img/clients/penta-plastech.png" alt="Penta Plastech" loading="lazy"></li>
+<li><img src="img/clients/feng-tay.png" alt="Feng Tay Group" loading="lazy"></li>
+<li><img src="img/clients/tvs-mobility.png" alt="TVS Mobility" loading="lazy"></li>
+<li><img src="img/clients/drona.png" alt="Drona Multi-Speciality Hospital" loading="lazy"></li>
+</ul>
+</div>
+</section>
+
+<section id="contact" class="haze">
+<div class="wrap" style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+<div class="stack" style="flex:999 1 520px;min-width:0;gap:24px">
+<span class="hl-oval">Get in touch</span>
+<h2 class="hl-statement">Tell us what you need →<em> we’ll take it from there.</em></h2>
+<p style="margin:0;max-width:38em">Partner with Haz Labs to work through regulatory compliance and pollution control without the guesswork. Pick what you need and we’ll draft the email for you.</p>
+<div role="group" aria-label="What do you need help with?" style="display:flex;flex-wrap:wrap;gap:8px" id="topics"></div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<a class="hl-btn hl-btn-primary" id="topic-mail" href="#" style="text-decoration:none">Email admin@hazlabs.in <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
+<a class="hl-btn hl-btn-secondary" href="tel:+918778270915" style="text-decoration:none">Call +91 87782 70915</a>
+</div>
+<div class="mono muted" id="topic-note"></div>
+</div>
+<div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<article class="ticket"><div style="padding:20px;display:flex;flex-direction:column;gap:12px"><div class="row code"><span>HZL/OFC.01-MAA</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div><h3 class="serif" style="margin:0;font-size:40px;line-height:1">Chennai</h3><p style="margin:0">RMZ Millenia Business Park-II, Perungudi, Chennai 600096</p></div><div class="tear" aria-hidden="true"></div><div style="padding:12px 20px 16px"><a class="serif" style="font-size:18px" href="https://maps.google.com/?q=RMZ+Millenia+Business+Park+Perungudi+Chennai" target="_blank" rel="noopener">Open in maps →</a></div></article>
+<article class="ticket"><div style="padding:20px;display:flex;flex-direction:column;gap:12px"><div class="row code"><span>HZL/OFC.02-VPM</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div><h3 class="serif" style="margin:0;font-size:40px;line-height:1">Viluppuram</h3><p style="margin:0">No. 283, Periya Nagar, Salamedu, Viluppuram 605401</p></div><div class="tear" aria-hidden="true"></div><div style="padding:12px 20px 16px"><a class="serif" style="font-size:18px" href="https://maps.google.com/?q=Periya+Nagar+Salamedu+Viluppuram+605401" target="_blank" rel="noopener">Open in maps →</a></div></article>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="hl-contact hl-contact-deep">
+<a class="hl-contact-item" href="tel:+918778270915"><svg class="hl-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg><span>+91 87782 70915</span></a>
+<a class="hl-contact-item" href="mailto:admin@hazlabs.in"><svg class="hl-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M3 5h18v14H3z M3 5l9 8 9-8"/></svg><span>admin@hazlabs.in</span></a>
+<a class="hl-contact-item" href="mailto:irs@hazlabs.in"><svg class="hl-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M3 5h18v14H3z M3 5l9 8 9-8"/></svg><span>irs@hazlabs.in</span></a>
+<a class="hl-contact-item" href="https://hazlabs.in"><svg class="hl-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M3 12h18 M12 3c3 3.5 3 14.5 0 18 M12 3c-3 3.5-3 14.5 0 18"/></svg><span>hazlabs.in</span></a>
+</div>
+<div class="legal mono"><span>Haz Labs · GSTIN 33FVJPM4292M1ZY</span><span>Company profile 2026</span></div>
+</footer>
+
+<script>
+(function () {
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function $(id) { return document.getElementById(id); }
+  function mailto(subject, body) { return 'mailto:admin@hazlabs.in?cc=irs@hazlabs.in&subject=' + encodeURIComponent(subject) + (body ? '&body=' + encodeURIComponent(body) : ''); }
+  var CROSS = '<svg class="hl-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg>';
+
+  /* ---------- Engineering ---------- */
+  var TICKETS = [
+    { tone: 'ink', title: 'Effluent', code: 'HZL/ENG.01-ETP', summary: 'Manual and semi-automatic effluent treatment plants.', items: ['Chemical and pharma', 'Food and beverage', 'Hospitals', 'Textiles'], sl: 'Capacity', sv: '1–10 KLD', foot: 'Pre-treatment or complete', tear: 'ETP' },
+    { title: 'Dust', code: 'HZL/ENG.02-DC', summary: 'High-efficiency collectors for a clean, safe shop floor.', items: ['Cyclone', 'Wet scrubber', 'ESP'], sl: 'Units', sv: 'Ambient · Portable · Fixed', foot: 'Collectors and scrubbers', tear: 'Dust' },
+    { title: 'Control', code: 'HZL/ENG.03-EB', summary: 'Electrical control and distribution boxes for machinery.', items: ['Manual', 'Semi-automated', 'Fully automated'], sl: 'Supply', sv: 'New or retrofit', foot: 'Bespoke builds', tear: 'Power' },
+    { title: 'Monitoring', code: 'HZL/ENG.04-AQ', summary: 'Air and water quality systems, installed and maintained.', items: ['Water: pH, DO, turbidity', 'Water: conductivity', 'Air: PM and gases'], sl: 'Data', sv: 'Continuous', foot: 'Hardwired and IoT sensors', tear: 'Air · Water' }
+  ];
+  function barcode(seed) {
+    var out = '';
+    for (var i = 0; i < 90; i++) { var c = seed.charCodeAt(i % seed.length) + i * 7; out += '<span style="width:' + (1 + c % 3) + 'px;margin-right:' + (1 + (c >> 2) % 3) + 'px"></span>'; }
+    return '<div class="hl-barcode" aria-hidden="true">' + out + '</div>';
+  }
+  $('eng-tickets').innerHTML = TICKETS.map(function (t) {
+    return '<article class="hl-ticket hl-ticket-' + (t.tone || 'paper') + '"><div class="hl-ticket-main"><div class="hl-ticket-row"><span class="hl-ticket-code">' + t.code + '</span>' + CROSS + '</div>' +
+      '<h3 class="hl-ticket-title">' + t.title + '</h3><p class="hl-ticket-summary">' + t.summary + '</p><ul class="hl-ticket-list">' + t.items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+      '<div class="hl-ticket-row hl-ticket-tearnote"><span>›››</span><span>' + t.tear + '</span><span>›››</span></div></div><div class="hl-ticket-tear" aria-hidden="true"></div>' +
+      '<div class="hl-ticket-stub"><div class="hl-ticket-row"><span class="hl-ticket-label">' + t.sl + '</span><span class="hl-ticket-value">' + t.sv + '</span></div>' + barcode(t.code) + '<div class="hl-ticket-label">' + t.foot + '</div></div></article>';
+  }).join('');
+
+  var ENGS = [
+    { code: 'HZL/ENG.01-ETP', name: 'Effluent treatment plants (ETP)', p1: 'We design and install manual and semi-automatic effluent treatment plants from 1 to 10 KLD (kilolitres per day), for pre-treatment or complete treatment.', p2: 'Each plant is designed to your requirements, site conditions and regulatory standards. Industries served include chemical processing, pharmaceuticals, food and beverage, hospitals and textiles.' },
+    { code: 'HZL/ENG.02-DC', name: 'Dust collectors and scrubbers', p1: 'High-efficiency dust collectors keep the working environment clean and safe, supplied as ambient, portable and stationary units.', p2: 'Types: cyclone separators, wet scrubbers and electrostatic precipitators (ESP).' },
+    { code: 'HZL/ENG.03-EB', name: 'Electrical control and distribution boxes', p1: 'Safe, reliable power distribution through machinery control and distribution boxes.', p2: 'We design and build boxes for manual, semi-automated and fully automated machinery, as new supply or as retrofits for existing machines.' },
+    { code: 'HZL/ENG.04-AQ', name: 'Air and water quality monitoring devices', p1: 'We install and maintain water quality monitoring for turbidity, pH, dissolved oxygen and conductivity in treated water and effluent, and air quality monitoring for particulate matter (PM), gas concentration and environmental parameters.', p2: 'Data is collected continuously through hardwired and IoT-enabled sensors.' }
+  ];
+  var engOpen = 0;
+  function renderEng() {
+    $('eng-acc').innerHTML = ENGS.map(function (e, i) {
+      var open = i === engOpen;
+      return '<div><button type="button" data-eng="' + i + '" aria-expanded="' + open + '" aria-controls="eng-b' + i + '"><span style="display:flex;flex-wrap:wrap;gap:4px 20px;align-items:baseline"><span class="code">' + e.code + '</span><span class="name">' + e.name + '</span></span><span class="mono" aria-hidden="true" style="white-space:nowrap">' + (open ? 'Close −' : 'Details +') + '</span></button>' +
+        '<div class="body" id="eng-b' + i + '"' + (open ? '' : ' hidden') + '><p>' + e.p1 + '</p><p class="muted">' + e.p2 + '</p></div></div>';
+    }).join('');
+  }
+  $('eng-acc').addEventListener('click', function (ev) { var b = ev.target.closest('[data-eng]'); if (!b) return; var i = +b.dataset.eng; engOpen = engOpen === i ? -1 : i; renderEng(); });
+  renderEng();
+
+  /* ---------- Consulting ---------- */
+  var SVCS = [
+    { code: 'HZL/SVC.01-CTE', name: 'Consent to Establish (CTE)', by: 'TNPCB', p1: 'Consent to Establish is the first approval any industrial project or activity needs from the TNPCB before work begins.', p2: 'Our understanding of the regulatory requirements and our careful preparation get your CTE approved on time, so your project starts without delays.' },
+    { code: 'HZL/SVC.02-CTO', name: 'Consent to Operate (CTO)', by: 'TNPCB', p1: 'Consent to Operate keeps an industry or business running legally once it is built.', p2: 'We guide you through the application, the compliance standards and the documentation, so operations continue without interruption and within environmental norms.' },
+    { code: 'HZL/SVC.03-HWA', name: 'Hazardous waste authorisation', by: 'TNPCB', p1: 'Handling hazardous waste demands strict compliance to protect the environment and public health.', p2: 'We guide you through obtaining Hazardous Waste Authorisation from the TNPCB and help you put proper waste management practices in place.' },
+    { code: 'HZL/SVC.04-BMW', name: 'Biomedical waste authorisation', by: 'TNPCB', p1: 'Facilities that generate or handle biomedical waste need authorisation before they can operate.', p2: 'We prepare the application and documentation and liaise with the regulator on your behalf.' },
+    { code: 'HZL/SVC.05-PWA', name: 'Plastic waste authorisation', by: 'TNPCB', p1: 'Businesses that generate or dispose of plastic waste need authorisation, and scrutiny is rising with concern over plastic pollution.', p2: 'We cover compliance, documentation and regulatory liaison to secure your Plastic Waste Authorisation from the TNPCB, so you operate responsibly within the law.' },
+    { code: 'HZL/SVC.06-EPR', name: 'Extended Producer Responsibility (EPR)', by: 'PIBO · PWP', p1: 'Extended Producer Responsibility rules place growing obligations on producers, importers, brand owners and plastic waste processors.', p2: 'We help companies meet their EPR mandates as PIBOs and PWPs, from registration to ongoing compliance.' }
+  ];
+  var svc = 0;
+  function renderSvc() {
+    $('svc-list').innerHTML = SVCS.map(function (s, i) {
+      return '<button type="button" class="toggle" style="border-width:0 0 1px 0" data-svc="' + i + '" aria-pressed="' + (i === svc) + '"><span style="display:flex;flex-direction:column;gap:4px"><span class="code" style="font-size:12px">' + s.code + '</span><span>' + s.name + '</span></span><span aria-hidden="true">→</span></button>';
+    }).join('');
+    var c = SVCS[svc];
+    $('svc-code').textContent = c.code; $('svc-name').textContent = c.name; $('svc-p1').textContent = c.p1; $('svc-p2').textContent = c.p2; $('svc-by').textContent = c.by;
+    $('svc-mail').href = mailto('Enquiry: ' + c.name);
+  }
+  $('svc-list').addEventListener('click', function (ev) { var b = ev.target.closest('[data-svc]'); if (!b) return; svc = +b.dataset.svc; renderSvc(); });
+  renderSvc();
+
+  /* ---------- Waste ---------- */
+  ['Industrial operation oils and lubricants', 'Industrial solvents and media', 'Hazardous waste', 'Plastic waste', 'Barrels and chemical containers', 'Industrial metal and metal alloy scrap'].forEach(function (n) {
+    $('streams').insertAdjacentHTML('beforeend', '<a href="' + mailto('Waste disposal: ' + n) + '"><span class="vdot" aria-hidden="true"></span><span style="flex:1">' + n + '</span><span aria-hidden="true">→</span></a>');
+  });
+  ['M/s Geopax Innovative Private Limited', 'M/s Pragati Industries', 'M/s Quality Business Services', 'M/s Sri Devi Plastics', 'M/s Ganapathy Plastics', 'M/s Fresh Field', 'M/s Thirumala Petro Chemicals'].forEach(function (n, i) {
+    $('partners').insertAdjacentHTML('beforeend', '<li><span class="code muted" style="font-size:12px">P.0' + (i + 1) + '</span><span>' + n + '</span></li>');
+  });
+
+  /* ---------- Catalogue ---------- */
+  var DEPTS = [
+    { id: 'pcm', code: 'Dept.01 · PCM', name: 'Pollution control', cats: ['Air', 'Monitoring', 'Water'] },
+    { id: 'ec', code: 'Dept.02 · EC', name: 'Environmental consulting', cats: ['Approvals', 'Audit', 'Monitoring', 'Studies'] },
+    { id: 'hwm', code: 'Dept.03 · HWM', name: 'Hazardous waste', cats: ['Disposal', 'Logistics', 'Infrastructure', 'EPR', 'Approvals'] }
+  ];
+  var CAT = [
+    ['pcm', 'PCM-WS-01', 'Wet scrubber, packed bed', 'Removes acidic gases (HCl, SO2, NH3) by counter-current liquid contact.', 'Air', 'm³/h'],
+    ['pcm', 'PCM-WS-02', 'Venturi scrubber, high-energy', 'Sub-micron particulate capture for incinerator and furnace stacks.', 'Air', 'm³/h'],
+    ['pcm', 'PCM-BF-01', 'Pulse-jet bag filter house', 'Dry particulate collection, 99.9% efficiency on PM10.', 'Air', 'm³/h'],
+    ['pcm', 'PCM-ESP-01', 'Electrostatic precipitator', 'High-temperature particulate capture for boilers and kilns.', 'Air', 'm³/h'],
+    ['pcm', 'PCM-CEMS-01', 'Continuous emission monitoring', 'CPCB-compliant stack monitoring (SO2, NOx, CO, PM).', 'Monitoring', 'stacks'],
+    ['pcm', 'PCM-ETP-01', 'Effluent treatment plant', 'Physico-chemical and biological treatment for industrial effluent.', 'Water', 'KLD'],
+    ['pcm', 'PCM-STP-01', 'Sewage treatment plant (MBBR)', 'Moving-bed bio-reactor for domestic sewage, treated for reuse.', 'Water', 'KLD'],
+    ['pcm', 'PCM-RO-01', 'Reverse osmosis / ZLD', 'Zero-liquid-discharge train with MEE for TNPCB ZLD norms.', 'Water', 'KLD'],
+    ['ec', 'EC-EIA-01', 'Environmental impact assessment', 'EIA Notification 2006 compliance for Category A and B projects.', 'Approvals', 'ha'],
+    ['ec', 'EC-CTE-01', 'TNPCB Consent to Establish', 'CTE filing under the Water and Air Acts through the OCMMS portal.', 'Approvals', 'units'],
+    ['ec', 'EC-CTO-01', 'TNPCB Consent to Operate', 'CTO filing and renewal by red, orange or green category.', 'Approvals', 'units'],
+    ['ec', 'EC-AUD-01', 'Environmental audit (Form-V)', 'Annual Form-V environmental statement to the TNPCB.', 'Audit', 'sites'],
+    ['ec', 'EC-AMB-01', 'Ambient air quality monitoring', 'NAAQS 2009 twelve-parameter monitoring.', 'Monitoring', 'locations'],
+    ['ec', 'EC-NOI-01', 'Noise mapping and survey', 'Day and night Leq mapping under the Noise Rules 2000.', 'Monitoring', 'locations'],
+    ['ec', 'EC-GW-01', 'Groundwater and soil study', 'CGWA NOC support, lithology and draft assessment.', 'Studies', 'ha'],
+    ['hwm', 'HWM-CHW-01', 'TSDF coordination (Gummidipoondi)', 'Routing to the Tamil Nadu common hazardous waste TSDF, with manifest filing.', 'Disposal', 'T/mo'],
+    ['hwm', 'HWM-INC-01', 'Incinerable HW disposal', 'Categorised incineration through an authorised common incineration facility.', 'Disposal', 'T/mo'],
+    ['hwm', 'HWM-TRA-01', 'HW transport (Form-10)', 'GPS-tracked vehicles, TREM card and manifest under the HOWM Rules 2016.', 'Logistics', 'trips/mo'],
+    ['hwm', 'HWM-STO-01', 'On-site HW storage shed', 'Designed for 90-day storage compliance under the HOWM Rules.', 'Infrastructure', 'm²'],
+    ['hwm', 'HWM-EW-01', 'E-waste take-back (EPR)', 'EPR registration on the CPCB portal and channelisation.', 'EPR', 'T/yr'],
+    ['hwm', 'HWM-BMW-01', 'Biomedical waste liaison', 'CBWTF tie-up for hospitals under the BMW Rules 2016.', 'Disposal', 'kg/day'],
+    ['hwm', 'HWM-PLA-01', 'Plastic waste EPR', 'Category I–IV EPR registration and credit reconciliation.', 'EPR', 'T/yr'],
+    ['hwm', 'HWM-AUTH-01', 'HW authorisation filing', 'Form-1 authorisation under the HOWM Rules 2016 through the TNPCB.', 'Approvals', 'units']
+  ].map(function (r) { return { dept: r[0], code: r[1], name: r[2], desc: r[3], cat: r[4], unit: r[5] }; });
+
+  var st = { dept: 'pcm', cat: 'All', q: '', docket: [], form: { name: '', company: '', phone: '', site: '', notes: '' } };
+  try { var saved = JSON.parse(localStorage.getItem('hzl-docket') || 'null'); if (saved && saved.docket) { st.docket = saved.docket; st.form = Object.assign(st.form, saved.form || {}); } } catch (e) {}
+  function persist() { try { localStorage.setItem('hzl-docket', JSON.stringify({ docket: st.docket, form: st.form })); } catch (e) {} }
+  function inDocket(code) { return st.docket.some(function (d) { return d.code === code; }); }
+
+  function renderCatalogue() {
+    var dept = DEPTS.filter(function (d) { return d.id === st.dept; })[0];
+    $('depts').innerHTML = DEPTS.map(function (d) {
+      var n = CAT.filter(function (r) { return r.dept === d.id; }).length;
+      return '<button type="button" role="tab" class="toggle" data-dept="' + d.id + '" aria-selected="' + (d.id === st.dept) + '"><span class="row code" style="font-size:12px;text-transform:uppercase"><span>' + d.code + '</span><span>' + n + ' codes</span></span><span class="serif n">' + d.name + '</span></button>';
+    }).join('');
+    $('cats').innerHTML = '<span class="mono" style="margin-right:4px">Filter</span>' + ['All'].concat(dept.cats).map(function (c) {
+      return '<button type="button" class="toggle chip" data-cat="' + c + '" aria-pressed="' + (c === st.cat) + '">' + c + '</button>';
+    }).join('');
+    var q = st.q.toLowerCase().trim();
+    var all = CAT.filter(function (r) { return r.dept === st.dept; });
+    var rows = all.filter(function (r) { return (st.cat === 'All' || r.cat === st.cat) && (!q || (r.code + ' ' + r.name + ' ' + r.desc).toLowerCase().indexOf(q) >= 0); });
+    $('ns').textContent = dept.code + ' · ' + dept.name;
+    $('shown').textContent = rows.length + ' of ' + all.length + ' codes';
+    $('norows').hidden = rows.length > 0;
+    $('rows').innerHTML = rows.map(function (r) {
+      var added = inDocket(r.code);
+      return '<li><div class="l"><span class="code muted">' + r.code + '</span><span style="font-size:18px;line-height:1.2">' + esc(r.name) + '</span><span class="muted" style="font-size:14px">' + esc(r.desc) + '</span></div>' +
+        '<div class="r"><span class="mono meta"><span>' + r.cat + '</span><span class="muted">Unit · ' + r.unit + '</span></span>' +
+        '<button type="button" class="toggle add" data-add="' + r.code + '" aria-pressed="' + added + '" aria-label="' + (added ? 'Remove ' : 'Add ') + r.code + ' ' + esc(r.name) + (added ? ' from' : ' to') + ' docket">' + (added ? 'Added ✓' : 'Add +') + '</button></div></li>';
+    }).join('');
+  }
+  function quoteHref() {
+    var f = st.form;
+    var lines = st.docket.map(function (d, i) { return (i + 1) + '. ' + d.code + ' · ' + d.name + ' · ' + (d.qty ? d.qty + ' ' + d.unit : 'capacity to confirm'); });
+    var body = 'Quote request from hazlabs website\n\nDocket\n' + lines.join('\n') + '\n\nName: ' + f.name + '\nCompany: ' + f.company + '\nPhone: ' + f.phone + '\nSite: ' + f.site + '\n\nNotes: ' + f.notes;
+    return mailto('Quote request: ' + st.docket.map(function (d) { return d.code; }).join(', '), body);
+  }
+  function renderDocket() {
+    var n = st.docket.length;
+    $('dk-count').textContent = (n < 10 ? '0' : '') + n;
+    $('dk-count-nav').textContent = '[' + n + ']';
+    $('dk-empty').hidden = n > 0;
+    $('dk-form').hidden = n === 0;
+    $('dk-list').innerHTML = st.docket.map(function (d) {
+      return '<li><div class="row" style="align-items:baseline"><span class="code" style="font-size:12px">' + d.code + '</span><button type="button" class="btn-link" data-rm="' + d.code + '" aria-label="Remove ' + d.code + ' from docket">Remove</button></div>' +
+        '<span style="font-size:15px;line-height:1.2">' + esc(d.name) + '</span>' +
+        '<label><span class="mono" style="font-size:12px;min-width:72px">Capacity</span><input inputmode="decimal" data-qty="' + d.code + '" value="' + esc(d.qty || '') + '" placeholder="—"><span class="code" style="font-weight:500;font-size:12px;min-width:64px">' + d.unit + '</span></label></li>';
+    }).join('');
+    $('quote').href = quoteHref();
+    persist();
+  }
+  document.querySelectorAll('#dk-form [data-f]').forEach(function (el) { el.value = st.form[el.dataset.f] || ''; });
+
+  $('depts').addEventListener('click', function (ev) { var b = ev.target.closest('[data-dept]'); if (!b) return; st.dept = b.dataset.dept; st.cat = 'All'; renderCatalogue(); });
+  $('cats').addEventListener('click', function (ev) { var b = ev.target.closest('[data-cat]'); if (!b) return; st.cat = b.dataset.cat; renderCatalogue(); });
+  $('q').addEventListener('input', function (ev) { st.q = ev.target.value; renderCatalogue(); });
+  $('rows').addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-add]'); if (!b) return;
+    var code = b.dataset.add;
+    if (inDocket(code)) st.docket = st.docket.filter(function (d) { return d.code !== code; });
+    else { var r = CAT.filter(function (x) { return x.code === code; })[0]; st.docket.push({ code: r.code, name: r.name, unit: r.unit, qty: '' }); }
+    renderCatalogue(); renderDocket();
+    var again = document.querySelector('[data-add="' + code + '"]'); if (again) again.focus();
+  });
+  $('dk-list').addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-rm]'); if (!b) return;
+    st.docket = st.docket.filter(function (d) { return d.code !== b.dataset.rm; }); renderCatalogue(); renderDocket();
+  });
+  $('dk-list').addEventListener('input', function (ev) {
+    var code = ev.target.dataset.qty; if (!code) return;
+    st.docket.forEach(function (d) { if (d.code === code) d.qty = ev.target.value; });
+    $('quote').href = quoteHref(); persist();
+  });
+  $('dk-form').addEventListener('input', function (ev) { var k = ev.target.dataset.f; if (!k) return; st.form[k] = ev.target.value; $('quote').href = quoteHref(); persist(); });
+  $('dk-clear').addEventListener('click', function () { st.docket = []; renderCatalogue(); renderDocket(); });
+  renderCatalogue(); renderDocket();
+
+  /* ---------- Regulations ---------- */
+  var REGS = {
+    central: { name: 'Central acts and rules', issuer: 'Government of India · MoEFCC', rows: [
+      ['WTR-1974', 'Water (Prevention and Control of Pollution) Act, 1974', 'Foundation of the consent regime, administered through the state boards.', 'pcm'],
+      ['AIR-1981', 'Air (Prevention and Control of Pollution) Act, 1981', 'Emission consents and air pollution control areas.', 'pcm'],
+      ['EPA-1986', 'Environment (Protection) Act, 1986', 'Umbrella legislation and source of the rules below.', ''],
+      ['HOWM-2016', 'Hazardous and Other Wastes (M&TM) Rules, 2016', 'Authorisation, manifest (Form-10), TSDF routing, EPR.', 'hwm'],
+      ['EWST-2022', 'E-Waste (Management) Rules, 2022', 'EPR portal registration, producer and refurbisher targets.', 'hwm'],
+      ['BMW-2016', 'Bio-Medical Waste Management Rules, 2016', 'Healthcare waste segregation and CBWTF tie-up.', 'hwm'],
+      ['PWM-2016', 'Plastic Waste Management Rules, 2016 (amended 2022, 2024)', 'Category I–IV EPR, credits and reconciliation.', 'hwm'],
+      ['EIA-2006', 'EIA Notification, 2006', 'Project categories A and B, prior environmental clearance.', 'ec']
+    ] },
+    cpcb: { name: 'CPCB guidelines', issuer: 'Central Pollution Control Board', rows: [
+      ['CEMS-2018', 'CEMS / CEQMS technical specifications', 'Online monitoring norms for 17 industry categories.', 'pcm'],
+      ['GENS-2015', 'Emission standards for DG sets', 'Noise and emission limits, retrofits.', ''],
+      ['ETP-NORM', 'General effluent discharge standards (Schedule VI)', 'BOD, COD, TSS and sector-specific limits.', 'pcm'],
+      ['NAAQS-09', 'National Ambient Air Quality Standards, 2009', 'Twelve parameters, the basis for AAQM stations.', 'ec']
+    ] },
+    tn: { name: 'Tamil Nadu', issuer: 'TNPCB · Government of Tamil Nadu', rows: [
+      ['TNPCB-CTE', 'TNPCB Consent to Establish (CTE)', 'Filed through the OCMMS portal, valid through commissioning.', 'ec'],
+      ['TNPCB-CTO', 'TNPCB Consent to Operate (CTO)', 'Validity set by red, orange or green category.', 'ec'],
+      ['GO-213', 'G.O. Ms. No. 213 (E&F Dept), siting of industries', 'Distance norms from water bodies, habitations and sensitive zones.', ''],
+      ['GO-127', 'G.O. Ms. No. 127, zero liquid discharge for textiles', 'ZLD for dyeing units.', 'pcm'],
+      ['TSDF-GMP', 'Common HW TSDF, Gummidipoondi', 'Tamil Nadu facility for non-incinerable hazardous waste.', 'hwm'],
+      ['TNPCB-SO', 'TNPCB siting order (red category)', 'Industrial estate and SIPCOT preference for red category.', ''],
+      ['CRZ-TN', 'Tamil Nadu Coastal Regulation Zone notification', 'CRZ-I, II and III restrictions for coastal districts.', '']
+    ] }
+  };
+  var DNAME = { pcm: 'Pollution control', ec: 'Consulting', hwm: 'Hazardous waste' };
+  var reg = 'central';
+  function renderRegs() {
+    $('reg-tabs').innerHTML = Object.keys(REGS).map(function (k) {
+      return '<button type="button" role="tab" class="toggle" data-reg="' + k + '" aria-selected="' + (k === reg) + '" style="min-height:48px;padding:10px 20px;display:flex;gap:12px;align-items:baseline"><span class="serif" style="font-size:20px">' + REGS[k].name + '</span><span class="code" style="font-size:12px">' + REGS[k].rows.length + '</span></button>';
+    }).join('');
+    $('reg-issuer').textContent = REGS[reg].issuer;
+    $('regs').innerHTML = REGS[reg].rows.map(function (g) {
+      return '<div class="r"><span class="code ref">' + g[0] + '</span><span class="nm">' + esc(g[1]) + '</span><span class="nt muted">' + esc(g[2]) + '</span>' +
+        (g[3] ? '<button type="button" class="btn-link" data-jump="' + g[3] + '" style="white-space:nowrap">See ' + DNAME[g[3]] + ' codes →</button>' : '') + '</div>';
+    }).join('');
+  }
+  $('reg-tabs').addEventListener('click', function (ev) { var b = ev.target.closest('[data-reg]'); if (!b) return; reg = b.dataset.reg; renderRegs(); });
+  $('regs').addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-jump]'); if (!b) return;
+    st.dept = b.dataset.jump; st.cat = 'All'; st.q = ''; $('q').value = ''; renderCatalogue();
+    $('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  renderRegs();
+
+  /* ---------- Contact topics ---------- */
+  var TOPICS = ['CTE', 'CTO', 'Hazardous waste', 'Biomedical waste', 'Plastic waste', 'EPR', 'ETP', 'Dust collectors', 'Control boxes', 'Monitoring', 'Waste disposal'];
+  var picked = [];
+  function renderTopics() {
+    $('topics').innerHTML = TOPICS.map(function (t) { return '<button type="button" class="toggle chip" data-topic="' + t + '" aria-pressed="' + (picked.indexOf(t) >= 0) + '">' + t + '</button>'; }).join('');
+    var subject = picked.length ? 'Enquiry: ' + picked.join(', ') : 'Enquiry from the Haz Labs website';
+    $('topic-mail').href = mailto(subject);
+    $('topic-note').textContent = picked.length ? 'Subject: ' + subject : 'Nothing picked yet: we’ll send a general enquiry';
+  }
+  $('topics').addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-topic]'); if (!b) return; var t = b.dataset.topic;
+    picked = picked.indexOf(t) >= 0 ? picked.filter(function (x) { return x !== t; }) : picked.concat([t]);
+    renderTopics(); var again = document.querySelector('[data-topic="' + t + '"]'); if (again) again.focus();
+  });
+  renderTopics();
+})();
+</script>
+</body>
+</html>
