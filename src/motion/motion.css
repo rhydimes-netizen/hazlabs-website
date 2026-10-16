@@ -1,6 +1,11 @@
 /* Lenis owns smooth scrolling; the page's own smooth scroll would fight it. */
 html.lenis { scroll-behavior: auto; }
 
+/* Cards waiting to tilt in sit rotated past the edge; clip (not hidden, which
+   would break the sticky docket) so they never add a sideways scrollbar. Set on
+   main, not body, because body's overflow is handed to the viewport. */
+main { overflow-x: clip; }
+
 /* Until the intro runs, keep the hero copy hidden so it doesn't flash in twice.
    The class is set by a tiny script in <head> and removed by a fallback timer
    if this module never loads. */
