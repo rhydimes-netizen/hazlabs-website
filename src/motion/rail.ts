@@ -1,6 +1,7 @@
 import { headerOffset, scrollToTarget } from './scroll';
 
-type Entry = { section: HTMLElement; link: HTMLAnchorElement; navLink: HTMLAnchorElement | null };
+// navLinks: the header and pill-menu links for the same section, kept in sync.
+type Entry = { section: HTMLElement; link: HTMLAnchorElement; navLinks: HTMLAnchorElement[] };
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -68,7 +69,12 @@ export function initRail(_reduced: boolean) {
     link.append(n, letters(name));
     li.appendChild(link);
     list.appendChild(li);
-    return { section, link, navLink };
+    const navLinks = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>(
+        `header.top a.nl[href="#${section.id}"], .pill-menu a[href="#${section.id}"]`,
+      ),
+    );
+    return { section, link, navLinks };
   });
 
   const readout = document.createElement('div');
@@ -127,9 +133,9 @@ export function initRail(_reduced: boolean) {
         e.link.classList.toggle('is-active', on);
         if (on) e.link.setAttribute('aria-current', 'true');
         else e.link.removeAttribute('aria-current');
-        if (e.navLink) {
-          if (on) e.navLink.setAttribute('aria-current', 'true');
-          else e.navLink.removeAttribute('aria-current');
+        for (const a of e.navLinks) {
+          if (on) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
         }
       });
       active = next;

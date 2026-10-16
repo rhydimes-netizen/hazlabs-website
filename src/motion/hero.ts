@@ -109,7 +109,6 @@ export function initHero(reduced: boolean) {
   if (reduced) return;
 
   const wrap = hero.querySelector<HTMLElement>('.wrap')!;
-  const oval = hero.querySelector('.hl-oval');
   const h1 = hero.querySelector('h1')!;
   const lead = hero.querySelector('.lead');
   const ctas = lead?.nextElementSibling;
@@ -135,7 +134,6 @@ export function initHero(reduced: boolean) {
   tl.to(paths, { strokeDashoffset: 0, duration: 2.4, stagger: 0.05, ease: 'power2.inOut' }, 0)
     .to(rules, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut' }, 0.3)
     .from(svg.querySelectorAll('.hz-mark'), { scale: 0, transformOrigin: '50% 50%', duration: 0.6, ease: 'back.out(2)' }, 1.2)
-    .from(oval, { y: 16, autoAlpha: 0, duration: 0.7 }, 0.15)
     .from(split.lines, { yPercent: 105, duration: 1, stagger: 0.09 }, 0.25)
     .from([lead, ctas], { y: 24, autoAlpha: 0, duration: 0.8, stagger: 0.1 }, 0.65)
     .from(figures, { y: 28, autoAlpha: 0, duration: 0.8, stagger: 0.08 }, 0.9);

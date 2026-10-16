@@ -8,11 +8,14 @@
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="stylesheet" href="hazlabs.css">
 <script>
-// Hide the hero copy until the motion script plays its intro; show it anyway
-// after 2.5 s if that script never runs.
+// Hide the hero copy until the motion script plays its intro, and show the
+// docket explainer as a loader on the first visit of a session. If the motion
+// script never starts (window.__hzMotion unset), undo both after 2.5 s.
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.documentElement.classList.add('motion-pending');
-  setTimeout(function () { document.documentElement.classList.remove('motion-pending'); }, 2500);
+  var hzRoot = document.documentElement;
+  hzRoot.classList.add('motion-pending');
+  try { if (!sessionStorage.getItem('hz-loader-seen')) hzRoot.classList.add('hz-loading'); } catch (e) {}
+  setTimeout(function () { if (!window.__hzMotion) hzRoot.classList.remove('motion-pending', 'hz-loading'); }, 2500);
 }
 </script>
 <style>
@@ -41,7 +44,7 @@ img{max-width:100%}
 .serif{font-family:var(--font-serif);font-style:italic;font-weight:400}
 .muted{color:var(--ink-muted)}
 .haze{background:linear-gradient(var(--haze),var(--paper))}.soft{background:var(--paper-soft)}.white{background:var(--paper)}
-section{scroll-margin-top:80px}
+section{scroll-margin-top:0}
 .cross{flex:none;color:var(--violet)}
 .ticket{background:var(--paper);border-radius:20px;box-shadow:var(--shadow-ticket);display:flex;flex-direction:column;color:var(--ink);text-decoration:none}
 .ticket .tear{border-top:2px dashed var(--ink);margin:0 12px}
@@ -55,14 +58,57 @@ section{scroll-margin-top:80px}
 .chip{min-height:44px;padding:6px 18px;border-radius:999px;font-family:var(--font-serif);font-style:italic;font-size:18px;line-height:1.2}
 .input{min-height:42px;padding:8px 12px;border:1px solid var(--ink);border-radius:0;background:#fff;color:var(--ink);font:inherit;font-size:16px;width:100%}
 
-/* header */
-header.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--rule)}
-header.top .bar{max-width:1280px;margin:0 auto;padding:10px var(--gutter);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 32px}
-header.top nav{display:flex;flex-wrap:wrap;gap:4px 22px;align-items:center}
-header.top nav a.nl{text-decoration:none;padding:12px 0}header.top nav a.nl:hover{text-decoration:underline;text-underline-offset:4px}
-.logo{display:block;background:#fff;padding:4px}.logo img{display:block;height:48px;width:auto}
-@media (max-width:900px){header.top{position:static}}
+/* header: one slim row that scrolls away; actions live in the floating pill */
+header.top{background:#fff;border-bottom:1px solid var(--rule)}
+header.top .bar{max-width:1280px;margin:0 auto;padding:6px var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:10px 32px}
+header.top nav{display:flex;gap:4px 22px;align-items:center}
+header.top nav a.nl{text-decoration:none;padding:12px 0;white-space:nowrap}header.top nav a.nl:hover{text-decoration:underline;text-underline-offset:4px}
+.logo{display:block;background:#fff;padding:4px}.logo img{display:block;height:40px;width:auto}
+@media (max-width:1079px){header.top nav{display:none}}
 
+/* loader: the docket explainer, shown while the first visit loads (and on demand) */
+.loader{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:24px var(--gutter);overflow-y:auto;background:linear-gradient(var(--haze),var(--paper))}
+html.hz-loading .loader,.loader.is-open{display:flex}
+html.hz-loading body{overflow:hidden}
+.ld-inner{width:100%;max-width:1040px;margin:auto;display:flex;flex-wrap:wrap;gap:32px 64px;align-items:center;justify-content:space-between}
+.ld-copy{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:24px;align-items:flex-start}
+.ld-copy img{display:block;height:40px;width:auto}
+.ld-copy h2{margin:0;font-size:52px;line-height:1;font-weight:400}
+.ld-steps{align-self:stretch;list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.ld-steps li{display:flex;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule);color:var(--ink-muted);transition:color .3s}
+.ld-steps li.is-on{color:var(--ink)}
+.ld-steps li.is-on .code{color:var(--violet)}
+.ld-steps strong{display:block;font-weight:400;font-size:24px;line-height:1.1}
+.ld-steps .d{display:block;margin-top:4px;font-size:15px;line-height:1.35}
+.ld-foot{align-self:stretch;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.ld-ticket{flex:0 1 400px;min-width:0;width:100%}
+.ld-rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.ld-rows li{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid var(--rule);line-height:1.2}
+.ld-qty{display:flex;gap:8px;align-items:center;font-size:12px}
+.ld-input{flex:1;min-height:30px;padding:4px 8px;border:1px solid var(--ink);display:flex;align-items:center;font-family:var(--font-mono);font-size:14px}
+.ld-tear{position:relative;height:0;margin:0 12px;border-top:2px dashed var(--rule)}
+.ld-tear-fill{position:absolute;left:0;right:0;top:-2px;border-top:2px dashed var(--ink);clip-path:inset(0 100% 0 0)}
+.ld-send{display:inline-flex;gap:8px;align-items:center;padding:12px 20px;border:1px solid var(--ink);color:var(--ink);font-family:var(--font-serif);font-style:italic;font-size:16px;line-height:1.2}
+.ld-send.is-on{background:var(--ink);color:var(--on-ink)}
+@media (max-width:640px){.ld-copy h2{font-size:36px}.ld-steps .d{display:none}.ld-steps li{padding:10px 0}.ld-inner{gap:24px}}
+
+/* floating pill: sections menu, docket and contact, fixed at the bottom */
+.pill{position:fixed;left:50%;bottom:16px;z-index:25;transform:translateX(-50%);display:flex;align-items:stretch;background:var(--paper);border:1px solid var(--ink);border-radius:999px;box-shadow:var(--shadow-ticket);font-family:var(--font-mono);font-weight:500;font-size:13px;line-height:1;text-transform:uppercase;white-space:nowrap}
+.pill a,.pill summary{display:flex;gap:8px;align-items:center;min-height:44px;padding:0 18px;color:var(--ink);text-decoration:none;cursor:pointer}
+.pill summary{list-style:none;border-radius:999px 0 0 999px}.pill summary::-webkit-details-marker{display:none}
+.pill a:hover,.pill summary:hover{background:var(--ink-tint)}
+.pill .sep{width:1px;background:var(--rule);align-self:stretch;margin:8px 0}
+.pill .pill-cta{background:var(--ink);color:var(--on-ink);border-radius:0 999px 999px 0;font-family:var(--font-serif);font-style:italic;font-size:16px;text-transform:none}
+.pill .pill-cta:hover{background:var(--ink-deep)}
+.pill .count{font-weight:700}
+.pill details{position:relative}
+.pill details[open] summary{background:var(--ink-tint)}
+.pill-menu{position:absolute;left:0;bottom:calc(100% + 12px);margin:0;padding:8px;list-style:none;min-width:260px;background:var(--paper);border:1px solid var(--ink);border-radius:20px;box-shadow:var(--shadow-ticket);display:flex;flex-direction:column}
+.pill-menu a{min-height:40px;padding:0 12px;border-radius:12px;gap:12px}
+.pill-menu a .n{color:var(--ink-muted);font-size:11px}
+.pill-menu a[aria-current]{background:var(--ink);color:var(--on-ink)}.pill-menu a[aria-current] .n{color:var(--haze)}
+.pill a:focus-visible,.pill summary:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+@media (max-width:480px){.pill{left:12px;right:12px;transform:none}.pill>details{flex:1}.pill summary{flex:1;justify-content:center;padding:0 12px}.pill a{padding:0 12px}.pill-menu{min-width:0;width:calc(100vw - 24px)}}
 /* hero */
 .hero .wrap{padding-top:clamp(40px,7vw,96px)}
 .hero p.lead{margin:0;max-width:36em;font-size:18px}
@@ -118,7 +164,7 @@ header.top nav a.nl{text-decoration:none;padding:12px 0}header.top nav a.nl:hove
 .cat-list .r{flex:1 1 260px;display:flex;gap:16px;align-items:center;justify-content:flex-end}
 .cat-list .meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end;font-size:12px}
 .add{min-width:112px;min-height:44px;padding:10px 16px;font-family:var(--font-serif);font-style:italic;font-size:16px}
-#docket{flex:1 1 340px;min-width:0;position:sticky;top:96px;scroll-margin-top:96px}
+#docket{flex:1 1 340px;min-width:0;position:sticky;top:24px;scroll-margin-top:24px}
 @media (max-width:900px){#docket{position:static}}
 .dk-list{list-style:none;margin:0;padding:0}
 .dk-list li{padding:12px 0;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
@@ -145,11 +191,41 @@ header.top nav a.nl{text-decoration:none;padding:12px 0}header.top nav a.nl:hove
 .clients img{max-height:72px;object-fit:contain}
 
 footer{background:var(--ink-deep);color:#fff}
-footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 24px;display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;font-size:12px;border-top:1px solid var(--ink-muted)}
+footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 88px;display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;font-size:12px;border-top:1px solid var(--ink-muted)}
 .hl-contact{max-width:1280px;margin:0 auto;padding:16px var(--gutter)}
 </style>
 </head>
 <body>
+<div class="loader" id="hz-loader" role="dialog" aria-modal="true" aria-labelledby="ld-title">
+<div class="ld-inner">
+<div class="ld-copy">
+<img src="img/hazlabs-lockup.png" alt="Haz Labs" width="117" height="40">
+<h2 class="serif" id="ld-title">How the docket works</h2>
+<ol class="ld-steps">
+<li data-step="1"><span class="code">01</span><span><strong class="serif">Pick codes</strong><span class="d">Browse the catalogue by department and add the codes you need.</span></span></li>
+<li data-step="2"><span class="code">02</span><span><strong class="serif">Add capacities</strong><span class="d">Enter a capacity for each code, in its own unit.</span></span></li>
+<li data-step="3"><span class="code">03</span><span><strong class="serif">Send one request</strong><span class="d">The whole docket opens in your mail app as one quote request.</span></span></li>
+</ol>
+<div class="ld-foot"><span class="mono" id="ld-status">Loading <span id="ld-pct">0</span>%</span><button type="button" class="btn-link" id="ld-skip">Skip</button></div>
+</div>
+<div class="ticket ld-ticket" aria-hidden="true">
+<div style="padding:20px;display:flex;flex-direction:column;gap:12px">
+<div class="row code"><span>HZL/DOC.QT-EXAMPLE</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div>
+<div class="row" style="align-items:flex-end"><span class="serif" style="font-size:40px;line-height:1">Your docket</span><span class="fig" style="font-size:52px;line-height:.9" id="ld-count">00</span></div>
+<ul class="ld-rows">
+<li><span class="code" style="font-size:12px">PCM-ETP-01</span><span>Effluent treatment plant</span><span class="ld-qty"><span class="mono">Capacity</span><span class="ld-input" data-type="5"></span><span class="code">KLD</span></span></li>
+<li><span class="code" style="font-size:12px">EC-CTO-01</span><span>TNPCB Consent to Operate</span><span class="ld-qty"><span class="mono">Capacity</span><span class="ld-input" data-type="1"></span><span class="code">units</span></span></li>
+<li><span class="code" style="font-size:12px">HWM-TRA-01</span><span>HW transport (Form-10)</span><span class="ld-qty"><span class="mono">Capacity</span><span class="ld-input" data-type="2"></span><span class="code">trips/mo</span></span></li>
+</ul>
+</div>
+<div class="ld-tear"><span class="ld-tear-fill"></span></div>
+<div style="padding:16px 20px 20px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between">
+<span class="ld-send">Send quote request <span>→</span></span>
+<span class="mono" style="font-size:12px">Opens your mail app</span>
+</div>
+</div>
+</div>
+</div>
 <a href="#main" class="sr">Skip to content</a>
 
 <header class="top">
@@ -164,8 +240,6 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 24px;dis
 <a class="nl" href="#regulations">Regulations</a>
 <a class="nl" href="#photos">Site photos</a>
 <a class="nl" href="#customers">Customers</a>
-<a class="hl-btn hl-btn-secondary" href="#docket" style="text-decoration:none;text-transform:none">Docket <span class="code" id="dk-count-nav">[0]</span></a>
-<a class="hl-btn hl-btn-primary" href="#contact" style="text-decoration:none;text-transform:none">Get in touch <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
 </nav>
 </div>
 </header>
@@ -175,7 +249,6 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 24px;dis
 <section id="top" class="hero haze">
 <div class="wrap">
 <div class="stack" style="gap:32px">
-<span class="hl-oval">Company profile 2026</span>
 <h1 class="hl-statement">Your consent isn’t paperwork.<em> It’s your licence to operate.</em></h1>
 <p class="lead">Haz Labs is a provider of engineering consulting services, pollution control machinery and industrial waste disposal support. We help industries obtain their licences from the Pollution Control Boards (TNPCB and CPCB) and stay compliant once they have them.</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px">
@@ -295,6 +368,7 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 24px;dis
 <button type="button" class="btn-link" id="dk-clear" style="align-self:flex-start">Clear docket</button>
 </div>
 <span class="mono" style="font-size:12px;line-height:16px">Opens your mail app with the docket filled in</span>
+<button type="button" class="btn-link" id="dk-howto" hidden style="align-self:flex-start">How the docket works</button>
 </div>
 </aside>
 </div>
@@ -375,8 +449,29 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 24px;dis
 <a class="hl-contact-item" href="mailto:irs@hazlabs.in"><svg class="hl-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M3 5h18v14H3z M3 5l9 8 9-8"/></svg><span>irs@hazlabs.in</span></a>
 <a class="hl-contact-item" href="https://hazlabs.in"><svg class="hl-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M3 12h18 M12 3c3 3.5 3 14.5 0 18 M12 3c-3 3.5-3 14.5 0 18"/></svg><span>hazlabs.in</span></a>
 </div>
-<div class="legal mono"><span>Haz Labs · GSTIN 33FVJPM4292M1ZY</span><span>Company profile 2026</span></div>
+<div class="legal mono"><span>Haz Labs · GSTIN 33FVJPM4292M1ZY</span></div>
 </footer>
+
+<nav class="pill" aria-label="Quick actions">
+<details>
+<summary><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5"/></svg>Sections</summary>
+<ol class="pill-menu">
+<li><a href="#top"><span class="n">01</span>Intro</a></li>
+<li><a href="#about"><span class="n">02</span>About</a></li>
+<li><a href="#engineering"><span class="n">03</span>Engineering</a></li>
+<li><a href="#consulting"><span class="n">04</span>Consulting</a></li>
+<li><a href="#waste"><span class="n">05</span>Waste disposal</a></li>
+<li><a href="#catalogue"><span class="n">06</span>Catalogue</a></li>
+<li><a href="#regulations"><span class="n">07</span>Regulations</a></li>
+<li><a href="#photos"><span class="n">08</span>Site photos</a></li>
+<li><a href="#customers"><span class="n">09</span>Customers</a></li>
+<li><a href="#contact"><span class="n">10</span>Contact</a></li>
+</ol>
+</details>
+<span class="sep" aria-hidden="true"></span>
+<a href="#docket" id="pill-docket">Docket <span class="count" id="dk-count-nav">[0]</span></a>
+<a class="pill-cta" href="#contact">Contact <span aria-hidden="true">→</span></a>
+</nav>
 
 <script>
 (function () {

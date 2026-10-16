@@ -9,8 +9,13 @@ import { initHero } from './hero';
 import { initReveals } from './reveal';
 import { initButtons } from './buttons';
 import { initRail } from './rail';
+import { initPill } from './pill';
+import { initLoader } from './loader';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
+
+// Tells the fallback timer in <head> that this script took over.
+(window as Window & { __hzMotion?: boolean }).__hzMotion = true;
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -38,13 +43,16 @@ document.addEventListener('click', (e) => {
 
 initButtons();
 initRail(reduced);
+initPill(reduced);
+const loaderDone = initLoader(reduced);
 
 // Headlines are split into lines, so wait for the web fonts (briefly) to get
-// the real line breaks before splitting.
+// the real line breaks before splitting. The hero intro waits for the loader.
 const fontsOrTimeout = Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1000))]);
-fontsOrTimeout.then(() => {
-  initHero(reduced);
+fontsOrTimeout.then(async () => {
   initReveals(reduced);
+  await loaderDone;
+  initHero(reduced);
   // The intro has hidden its pieces by now; the hero can be shown.
   document.documentElement.classList.remove('motion-pending');
 
