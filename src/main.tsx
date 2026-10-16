@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import './motion';
 
 // One entry per animation: placeholder id in index.html -> island component.
 // Islands (and React itself) load only when their placeholder scrolls near the
