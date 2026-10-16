@@ -80,7 +80,14 @@ html.hz-loading body{overflow:hidden}
 .ld-steps li.is-on .code{color:var(--violet)}
 .ld-steps strong{display:block;font-weight:400;font-size:24px;line-height:1.1}
 .ld-steps .d{display:block;margin-top:4px;font-size:15px;line-height:1.35}
-.ld-foot{align-self:stretch;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.ld-welcome{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.ld-welcome p{margin:0;max-width:30em;font-size:16px;line-height:1.4}
+.ld-foot{align-self:stretch;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.ld-enter{display:inline-flex;gap:8px;align-items:center;min-height:48px;padding:12px 24px;border:1px solid var(--ink);border-radius:0;background:var(--ink);color:var(--on-ink);font-family:var(--font-serif);font-style:italic;font-size:18px;line-height:1.2;cursor:pointer;transition:background .2s,color .2s}
+.ld-enter:hover{background:var(--ink-deep)}
+.ld-enter:disabled{background:transparent;color:var(--ink-muted);border-color:var(--rule);cursor:progress;font-family:var(--font-mono);font-style:normal;font-size:13px;text-transform:uppercase}
+.ld-enter:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.ld-enter .arrow{font-family:var(--font-sans);font-style:normal;transition:transform .3s}.ld-enter:hover .arrow{transform:translateX(4px)}
 .ld-ticket{flex:0 1 400px;min-width:0;width:100%}
 .ld-rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
 .ld-rows li{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid var(--rule);line-height:1.2}
@@ -90,7 +97,7 @@ html.hz-loading body{overflow:hidden}
 .ld-tear-fill{position:absolute;left:0;right:0;top:-2px;border-top:2px dashed var(--ink);clip-path:inset(0 100% 0 0)}
 .ld-send{display:inline-flex;gap:8px;align-items:center;padding:12px 20px;border:1px solid var(--ink);color:var(--ink);font-family:var(--font-serif);font-style:italic;font-size:16px;line-height:1.2}
 .ld-send.is-on{background:var(--ink);color:var(--on-ink)}
-@media (max-width:640px){.ld-copy h2{font-size:36px}.ld-steps .d{display:none}.ld-steps li{padding:10px 0}.ld-inner{gap:24px}}
+@media (max-width:640px){.ld-copy{gap:18px}.ld-welcome p{font-size:15px}.ld-copy h2{font-size:36px}.ld-steps .d{display:none}.ld-steps li{padding:10px 0}.ld-inner{gap:24px}}
 
 /* floating pill: sections menu, docket and contact, fixed at the bottom */
 .pill{position:fixed;left:50%;bottom:16px;z-index:25;transform:translateX(-50%);display:flex;align-items:stretch;background:var(--paper);border:1px solid var(--ink);border-radius:999px;box-shadow:var(--shadow-ticket);font-family:var(--font-mono);font-weight:500;font-size:13px;line-height:1;text-transform:uppercase;white-space:nowrap}
@@ -200,13 +207,14 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 88px;dis
 <div class="ld-inner">
 <div class="ld-copy">
 <img src="img/hazlabs-lockup.png" alt="Haz Labs" width="117" height="40">
+<div class="ld-welcome"><span class="hl-oval">Welcome to Haz Labs</span><p>Glad you’re here. Before you look around, here’s how to ask us for a quote.</p></div>
 <h2 class="serif" id="ld-title">How the docket works</h2>
 <ol class="ld-steps">
 <li data-step="1"><span class="code">01</span><span><strong class="serif">Pick codes</strong><span class="d">Browse the catalogue by department and add the codes you need.</span></span></li>
 <li data-step="2"><span class="code">02</span><span><strong class="serif">Add capacities</strong><span class="d">Enter a capacity for each code, in its own unit.</span></span></li>
 <li data-step="3"><span class="code">03</span><span><strong class="serif">Send one request</strong><span class="d">The whole docket opens in your mail app as one quote request.</span></span></li>
 </ol>
-<div class="ld-foot"><span class="mono" id="ld-status">Loading <span id="ld-pct">0</span>%</span><button type="button" class="btn-link" id="ld-skip">Skip</button></div>
+<div class="ld-foot"><button type="button" class="ld-enter" id="ld-enter" disabled>Loading <span id="ld-pct">0</span>%</button><span class="mono muted" id="ld-status" style="font-size:12px">Preparing the site</span></div>
 </div>
 <div class="ticket ld-ticket" aria-hidden="true">
 <div style="padding:20px;display:flex;flex-direction:column;gap:12px">
