@@ -39,7 +39,7 @@ header.top nav a.nl[aria-current] { text-decoration: underline; text-decoration-
 .hz-strip-title { position: relative; flex: 1; width: 100%; overflow: hidden; transform: rotate(180deg); }
 .hz-strip-text {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end;
-  writing-mode: vertical-rl; white-space: nowrap; font-size: 15px; line-height: 1;
+  writing-mode: vertical-rl; white-space: nowrap; font-family: var(--font-head); font-weight: 600; font-size: 16px; letter-spacing: -.01em; line-height: 1;
 }
 .hz-strip-menu {
   flex: none; width: 32px; height: 32px; display: grid; place-items: center; padding: 0;
@@ -64,7 +64,7 @@ header.top nav a.nl[aria-current] { text-decoration: underline; text-decoration-
 .hz-menu-bar .hl-oval { background: var(--paper); }
 .hz-menu-close {
   min-height: 44px; padding: 0 18px; border: 1px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink);
-  font-family: var(--font-mono); font-weight: 500; font-size: 13px; text-transform: uppercase; cursor: pointer;
+  font-family: var(--font-sans); font-weight: 500; font-size: 14px; cursor: pointer;
 }
 .hz-menu-close:hover { background: var(--ink-tint); }
 .hz-menu-close:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }

@@ -1,4 +1,8 @@
 import type { ComponentType } from 'react';
+// Type after brand.dropbox.com: a sharp variable grotesk for headings and
+// figures, a neutral grotesk for text (both OFL, served with the site).
+import '@fontsource-variable/bricolage-grotesque/standard.css';
+import '@fontsource-variable/instrument-sans/standard.css';
 import './motion';
 
 // One entry per animation: placeholder id in index.html -> island component.
