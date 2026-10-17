@@ -19,7 +19,8 @@ function onEnter(trigger: Element, vars: gsap.TweenVars, targets: gsap.TweenTarg
 
 export function initReveals(reduced: boolean) {
   if (reduced) return;
-  const sections = $$('main > section:not(.hero)');
+  // The index section animates its own heading as it assembles.
+  const sections = $$('main > section:not(.hero):not(#index)');
 
   for (const section of sections) {
     const oval = section.querySelector('.hl-oval');
@@ -60,25 +61,24 @@ export function initReveals(reduced: boolean) {
     );
   }
 
-  // Tickets tilt in like cards dealt onto a desk, then straighten.
+  // Cards arrive as blocks: each wipes up out of its own cell, one after another.
+  const block = (card: Element, i = 0) =>
+    onEnter(card, {
+      clipPath: 'inset(100% 0 0 0)',
+      y: 32,
+      duration: 0.8,
+      delay: i * 0.08,
+      ease: 'power4.out',
+      clearProps: 'clipPath,transform',
+    });
   const decks = ['#about .lines', '#eng-tickets', '#contact .ticket'];
   for (const sel of decks) {
     const found = $$(sel);
     const cards = found.length === 1 ? (Array.from(found[0].children) as HTMLElement[]) : found;
-    cards.forEach((card, i) => {
-      onEnter(card, {
-        y: 90,
-        rotation: [-7, 5, -4, 6][i % 4],
-        autoAlpha: 0,
-        duration: 1.1,
-        delay: i * 0.09,
-        ease: 'power4.out',
-        transformOrigin: '50% 100%',
-      });
-    });
+    cards.forEach(block);
   }
-  onEnter(document.querySelector('#consulting article')!, { y: 60, rotation: 3, autoAlpha: 0, duration: 1.1 });
-  onEnter(document.querySelector('#photos .drive')!, { y: 60, rotation: -4, autoAlpha: 0, duration: 1.1 });
+  block(document.querySelector('#consulting article')!);
+  block(document.querySelector('#photos .drive')!);
 
   // Masked panel: the waste-stream board opens from a smaller window as it scrolls in.
   const streams = document.querySelector('.streams');

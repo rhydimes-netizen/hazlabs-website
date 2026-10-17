@@ -8,7 +8,8 @@ import { setLenis, scrollToTarget } from './scroll';
 import { initHero } from './hero';
 import { initReveals } from './reveal';
 import { initButtons } from './buttons';
-import { initRail } from './rail';
+import { initMosaic } from './mosaic';
+import { initStrip } from './strip';
 import { initPill } from './pill';
 import { initLoader } from './loader';
 
@@ -42,7 +43,6 @@ document.addEventListener('click', (e) => {
 });
 
 initButtons();
-initRail(reduced);
 initPill(reduced);
 const loaderDone = initLoader(reduced);
 
@@ -50,6 +50,9 @@ const loaderDone = initLoader(reduced);
 // the real line breaks before splitting. The hero intro waits for the loader.
 const fontsOrTimeout = Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1000))]);
 fontsOrTimeout.then(async () => {
+  // The mosaic pins its section, so it is set up before the triggers below it.
+  const { openMenu } = initMosaic(reduced);
+  initStrip(reduced, openMenu);
   initReveals(reduced);
   await loaderDone;
   initHero(reduced);
@@ -57,9 +60,17 @@ fontsOrTimeout.then(async () => {
   document.documentElement.classList.remove('motion-pending');
 
   // Late content (catalogue filters, the accordion) changes section heights.
+  // Only a real change re-measures: a refresh briefly unpins the mosaic,
+  // which would otherwise report a resize of its own and loop.
+  const main = document.getElementById('main')!;
+  let lastH = main.offsetHeight;
   let pending = 0;
   new ResizeObserver(() => {
     cancelAnimationFrame(pending);
-    pending = requestAnimationFrame(() => ScrollTrigger.refresh());
-  }).observe(document.getElementById('main')!);
+    pending = requestAnimationFrame(() => {
+      if (Math.abs(main.offsetHeight - lastH) < 2) return;
+      ScrollTrigger.refresh();
+      lastH = main.offsetHeight;
+    });
+  }).observe(main);
 });

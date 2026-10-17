@@ -116,11 +116,61 @@ html.hz-loading body{overflow:hidden}
 .pill-menu a[aria-current]{background:var(--ink);color:var(--on-ink)}.pill-menu a[aria-current] .n{color:var(--haze)}
 .pill a:focus-visible,.pill summary:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
 @media (max-width:480px){.pill{left:12px;right:12px;transform:none}.pill>details{flex:1}.pill summary{flex:1;justify-content:center;padding:0 12px}.pill a{padding:0 12px}.pill-menu{min-width:0;width:calc(100vw - 24px)}}
-/* hero */
-.hero .wrap{padding-top:clamp(40px,7vw,96px)}
+/* grid canvas: hairline cells behind white sections, content snaps to them */
+:root{--cell:96px}
+@media (max-width:640px){:root{--cell:64px}}
+.grid-canvas{background-color:var(--paper);background-image:linear-gradient(to right,var(--rule) 1px,transparent 1px),linear-gradient(to bottom,var(--rule) 1px,transparent 1px);background-size:var(--cell) var(--cell)}
+
+/* hero: the statement sits in one white cell on the grid; brand blocks snap to cells beside it */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1;padding-top:var(--cell);padding-bottom:var(--cell)}
+.hero-cell{max-width:860px;background:var(--paper);border:1px solid var(--ink);padding:40px;display:flex;flex-direction:column;gap:28px;align-items:flex-start}
 .hero p.lead{margin:0;max-width:36em;font-size:18px}
-.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:1px solid var(--ink);margin-top:56px}
-.figures>div{padding:24px 24px 0 0;display:flex;flex-direction:column;gap:8px}
+.hero-blocks{position:absolute;inset:0;pointer-events:none}
+.hb{position:absolute;display:block}
+.hb-1{left:calc(var(--cell)*11);top:var(--cell);width:calc(var(--cell)*2);height:calc(var(--cell)*2);background:var(--ink)}
+.hb-2{left:calc(var(--cell)*13);top:var(--cell);width:var(--cell);height:var(--cell);background:var(--haze)}
+.hb-3{left:calc(var(--cell)*12);top:calc(var(--cell)*3);width:calc(var(--cell)*2);height:var(--cell);background:var(--ink-deep)}
+.hb-4{left:calc(var(--cell)*11);top:calc(var(--cell)*3);width:var(--cell);height:calc(var(--cell)*2);background:var(--haze)}
+@media (max-width:1199px){.hero-blocks{display:none}}
+@media (max-width:640px){.hero-cell{padding:24px}}
+
+/* index: a bento mosaic of the site's sections */
+/* While pinned the whole index must fit one screen, so the mosaic takes what the heading leaves. */
+.index-sec .wrap{display:flex;flex-direction:column;gap:24px;padding-top:32px;padding-bottom:32px}
+.index-head{display:flex;flex-direction:column;gap:16px;align-items:flex-start;background:var(--paper);padding:16px 24px 16px 0;max-width:900px}
+.mosaic{display:grid;gap:10px;grid-template-columns:2fr 3.5fr 3fr 2fr;grid-template-rows:4fr 1fr 4fr;height:clamp(500px,calc(100vh - 260px),760px)}
+.mosaic .tile:nth-child(1){grid-column:1;grid-row:1/3}
+.mosaic .tile:nth-child(2){grid-column:2;grid-row:1}
+.mosaic .tile:nth-child(3){grid-column:3;grid-row:1/3}
+.mosaic .tile:nth-child(4){grid-column:4;grid-row:1}
+.mosaic .tile:nth-child(5){grid-column:1;grid-row:3}
+.mosaic .tile:nth-child(6){grid-column:2;grid-row:2/4}
+.mosaic .tile:nth-child(7){grid-column:3;grid-row:3}
+.mosaic .tile:nth-child(8){grid-column:4;grid-row:2/4}
+.tile{position:relative;display:flex;flex-direction:column;gap:12px;min-width:0;padding:24px;text-decoration:none;border-radius:0;overflow:hidden;transition:border-radius .35s cubic-bezier(.4,0,.2,1),padding .35s cubic-bezier(.4,0,.2,1)}
+.tile:hover,.tile:focus-visible{border-radius:var(--radius-ticket);padding:32px}
+.tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tile-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tile-title{font-size:28px;line-height:1.1}
+.tile-art{margin-top:auto;display:flex;flex-direction:column;gap:8px;align-items:flex-start;transform-origin:0 100%;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.tile:hover .tile-art{transform:scale(1.06)}
+.tile .fig{font-size:clamp(56px,6vw,96px)}
+.tile .fig-row{display:flex;gap:8px;align-items:flex-start}
+.tile .mono{font-size:12px;line-height:16px}
+.t-ink{background:var(--ink);color:var(--on-ink)}
+.t-ink-deep{background:var(--ink-deep);color:var(--on-ink)}
+.t-haze{background:var(--haze);color:var(--ink)}
+.t-tint{background:var(--ink-tint);color:var(--ink)}
+.t-paper{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.t-soft{background:var(--paper-soft);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+@media (max-width:899px){
+  .mosaic{height:auto;min-height:0;grid-template-columns:1fr 1fr;grid-template-rows:none}
+  .mosaic .tile:nth-child(n){grid-column:auto;grid-row:auto;min-height:200px}
+  .tile-title{font-size:22px}
+}
+@media (max-width:480px){.mosaic{grid-template-columns:1fr}.mosaic .tile:nth-child(n){min-height:168px}}
+
 .fig{font-family:var(--font-display);font-size:64px;line-height:.95}
 .dot{width:10px;height:10px;border-radius:999px;background:var(--signal);margin-top:6px;display:inline-block}
 
@@ -254,26 +304,41 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 88px;dis
 
 <main id="main">
 
-<section id="top" class="hero haze">
+<section id="top" class="hero grid-canvas">
+<div class="hero-blocks" aria-hidden="true"><span class="hb hb-1"></span><span class="hb hb-2"></span><span class="hb hb-3"></span><span class="hb hb-4"></span></div>
 <div class="wrap">
-<div class="stack" style="gap:32px">
+<div class="hero-cell">
+<span class="code hero-code">HZL/IDX.00 · Tamil Nadu</span>
 <h1 class="hl-statement">Your consent isn’t paperwork.<em> It’s your licence to operate.</em></h1>
-<p class="lead">Haz Labs is a provider of engineering consulting services, pollution control machinery and industrial waste disposal support. We help industries obtain their licences from the Pollution Control Boards (TNPCB and CPCB) and stay compliant once they have them.</p>
+<p class="lead">We help industries get their licences from the Pollution Control Boards (TNPCB and CPCB), supply the pollution control machinery those licences call for and route industrial waste to licensed processors. One team, from licence to pollution control system.</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px">
 <a class="hl-btn hl-btn-primary" href="#catalogue" style="text-decoration:none">Browse the catalogue <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
 <a class="hl-btn hl-btn-secondary" href="#contact" style="text-decoration:none">Talk to us</a>
 </div>
 </div>
-<div class="figures">
-<div><div style="display:flex;gap:8px;align-items:flex-start"><span class="fig">6</span><span class="dot" aria-hidden="true"></span></div><div class="mono">Consents and authorisations we file</div></div>
-<div><span class="fig">4</span><div class="mono">Engineering lines, designed and commissioned</div></div>
-<div><span class="fig">1–10</span><div class="mono">KLD effluent treatment capacity</div></div>
-<div><span class="fig">7</span><div class="mono">Licensed waste disposal partners</div></div>
-</div>
 </div>
 </section>
 
-<section id="about" class="white">
+<section id="index" class="index-sec grid-canvas" aria-labelledby="index-title">
+<div class="wrap index-wrap">
+<div class="index-head">
+<span class="hl-oval">Everything we do</span>
+<h2 class="hl-statement hl-statement-md" id="index-title">Licences, machinery and waste in one place →<em> start wherever you stand.</em></h2>
+</div>
+<nav class="mosaic" aria-label="Site index">
+<a class="tile t-ink-deep" href="#about"><span class="tile-top"><span class="code">HZL/ABT.01</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">About</span><span class="tile-art"><span class="fig">3</span><span class="mono">Lines of work, one team</span></span></a>
+<a class="tile t-haze" href="#engineering"><span class="tile-top"><span class="code">HZL/ENG.02</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Engineering</span><span class="tile-art"><span class="fig">1–10</span><span class="mono">KLD effluent treatment capacity</span></span></a>
+<a class="tile t-ink" href="#consulting"><span class="tile-top"><span class="code">HZL/SVC.03</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Consulting</span><span class="tile-art"><span class="fig-row"><span class="fig">6</span><span class="dot" aria-hidden="true"></span></span><span class="mono">Consents and authorisations we file</span></span></a>
+<a class="tile t-paper" href="#catalogue"><span class="tile-top"><span class="code">HZL/CAT.04</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Catalogue</span><span class="tile-art"><span class="fig">23</span><span class="mono">Product codes, one docket</span></span></a>
+<a class="tile t-tint" href="#waste"><span class="tile-top"><span class="code">HZL/WST.05</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Waste disposal</span><span class="tile-art"><span class="fig">7</span><span class="mono">Licensed disposal partners</span></span></a>
+<a class="tile t-soft" href="#regulations"><span class="tile-top"><span class="code">HZL/REG.06</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Regulations</span><span class="tile-art"><span class="fig">19</span><span class="mono">Statutes, rules and orders indexed</span></span></a>
+<a class="tile t-ink-deep" href="#photos"><span class="tile-top"><span class="code">HZL/IMG.07</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Site photos</span><span class="tile-art"><svg class="tile-cam" viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M3 8h3.5l1.5-2.5h8L17.5 8H21v11H3z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span class="mono">Plants, collectors and panels as built</span></span></a>
+<a class="tile t-haze" href="#customers"><span class="tile-top"><span class="code">HZL/CLT.08</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Customers</span><span class="tile-art"><span class="fig">8</span><span class="mono">Clients across five industries</span></span></a>
+</nav>
+</div>
+</section>
+
+<section id="about" class="white grid-canvas">
 <div class="wrap" style="display:flex;flex-direction:column;gap:48px">
 <div style="display:flex;flex-wrap:wrap;gap:24px 64px;align-items:flex-start">
 <div style="flex:1 1 240px"><span class="hl-oval hl-oval-lg">About us</span></div>
@@ -323,7 +388,7 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 88px;dis
 </div>
 </section>
 
-<section id="waste" class="white">
+<section id="waste" class="white grid-canvas">
 <div class="wrap" style="display:flex;flex-direction:column;gap:40px">
 <div class="stack"><span class="hl-oval">Industrial waste disposal support</span><h2 class="hl-statement hl-statement-md">Licensed processors only →<em> so your waste leaves the gate compliant.</em></h2>
 <p class="muted" style="margin:0;max-width:44em">Proper disposal through licensed waste processors keeps you compliant. We help companies dispose of industrial waste responsibly through our network of trusted disposal partners.</p></div>
@@ -383,7 +448,7 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 88px;dis
 </div>
 </section>
 
-<section id="regulations" class="white">
+<section id="regulations" class="white grid-canvas">
 <div class="wrap" style="display:flex;flex-direction:column;gap:32px">
 <div class="split">
 <div class="main stack"><span class="hl-oval">Regulatory index</span><h2 class="hl-statement hl-statement-md">The statutes and orders we work under →<em> cross-referenced to the catalogue.</em></h2></div>
