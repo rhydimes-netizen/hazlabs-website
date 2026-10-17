@@ -45,17 +45,19 @@ export function initMosaic(reduced: boolean) {
           0.1,
         );
     });
+    // Narrow screens: no pinning (it fights touch scrolling), but each tile
+    // still slides in from its own side of the two-column bento as it scrolls
+    // into view, tied to the scroll like the desktop assembly.
     mm.add('(max-width: 899px)', () => {
-      tiles.forEach((tile) =>
+      tiles.forEach((tile) => {
+        const left = getComputedStyle(tile).gridColumnStart === '1';
         gsap.from(tile, {
-          clipPath: 'inset(0 0 100% 0)',
-          y: 24,
-          duration: 0.8,
-          ease: 'power3.out',
-          clearProps: 'clipPath,transform',
-          scrollTrigger: { trigger: tile, start: 'top 92%', once: true },
-        }),
-      );
+          xPercent: left ? -110 : 110,
+          autoAlpha: 0,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: tile, start: 'top bottom', end: 'top 65%', scrub: 0.5 },
+        });
+      });
     });
   }
 
