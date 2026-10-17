@@ -49,7 +49,7 @@ section{scroll-margin-top:0}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .hl-statement{max-width:none}
-.btn-link{min-height:32px;padding:4px 0;border:0;background:transparent;color:var(--ink);cursor:pointer;font-family:var(--font-mono);font-weight:500;font-size:12px;text-transform:uppercase;text-decoration:underline;text-underline-offset:3px}
+.btn-link{min-height:32px;padding:4px 0;border:0;background:transparent;color:var(--ink);cursor:pointer;font-family:var(--font-sans);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px}
 .toggle{border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
 .toggle:hover{background:var(--ink-tint)}
 .toggle[aria-pressed="true"],.toggle[aria-selected="true"]{background:var(--ink);color:var(--on-ink)}
@@ -197,7 +197,7 @@ html.hz-loading body{overflow:hidden}
 .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
 .lines a{padding:20px;gap:16px;transition:transform .15s}.lines a:hover{transform:translateY(-3px)}
 .lines a.ink{background:var(--ink);color:#fff}
-.lines .t{font-size:40px;line-height:1}.lines .foot{margin-top:auto;padding-top:12px;border-top:2px dashed currentColor;font-size:12px}
+.lines .t{font-size:40px;line-height:1}.lines .foot{margin-top:auto;padding-top:12px;border-top:2px dashed currentColor;font-size:13px}
 
 /* engineering tickets */
 .eng-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:stretch}
@@ -232,13 +232,13 @@ html.hz-loading body{overflow:hidden}
 .cat-wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
 .cat-main{flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:16px}
 .cat-tools{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
-.cat-head{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;background:var(--ink);color:#fff;font-size:12px}
+.cat-head{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;background:var(--ink);color:#fff;font-size:13px}
 .cat-list{list-style:none;margin:-16px 0 0;padding:0;border-bottom:1px solid var(--ink)}
 .cat-list li{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:16px;border-top:1px solid var(--rule)}
 .cat-list li:hover{background:#fff}
 .cat-list .l{flex:999 1 380px;min-width:0;display:flex;flex-direction:column;gap:6px}
 .cat-list .r{flex:1 1 260px;display:flex;gap:16px;align-items:center;justify-content:flex-end}
-.cat-list .meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end;font-size:12px}
+.cat-list .meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end;font-size:13px}
 .add{min-width:112px;min-height:44px;padding:10px 16px;font-family:var(--font-serif);font-style:italic;font-size:16px}
 #docket{flex:1 1 340px;min-width:0;position:sticky;top:24px;scroll-margin-top:24px}
 @media (max-width:900px){#docket{position:static}}
@@ -253,7 +253,7 @@ html.hz-loading body{overflow:hidden}
 
 /* regs */
 .regs .r{display:flex;flex-wrap:wrap;gap:6px 24px;padding:14px 16px;border-top:1px solid var(--rule);align-items:baseline}
-.regs .ref{flex:0 0 120px}.regs .nm{flex:999 1 320px;min-width:0}.regs .nt{flex:1 1 280px;min-width:0;font-size:14px}
+.regs .ref{flex:0 0 120px}.regs .nm{flex:999 1 320px;min-width:0}.regs .nt{flex:1 1 280px;min-width:0;font-size:15px}
 
 /* photos */
 .drive{flex:1 1 320px;min-width:0;transition:transform .15s}
@@ -274,7 +274,11 @@ footer .legal{max-width:1280px;margin:0 auto;padding:16px var(--gutter) 88px;dis
    Headlines in a heavy variable grotesk, big, with tight tracking (-2%) and short
    leading; text in a neutral grotesk at 16/24; labels in sentence case. The brand's
    turn of phrase stays: the italic half of a statement is still Instrument Serif. */
-body{line-height:1.5;font-feature-settings:"ss01" off}
+body{line-height:1.5;font-weight:450;font-feature-settings:"ss01" off}
+/* Readability: ink-muted fails on haze (4.3:1), so text there is ink, as the brand book says;
+   tickets on haze are white and keep their muted secondary text. */
+.haze .muted{color:var(--ink)}
+.haze .ticket .muted{color:var(--ink-muted)}
 .hl-statement{font-family:var(--font-head);font-weight:700;font-stretch:100%;font-size:clamp(36px,5.6vw,80px);line-height:1.04;letter-spacing:-.025em}
 .hl-statement-md{font-size:clamp(28px,3.4vw,48px);line-height:1.08;letter-spacing:-.02em}
 .hl-statement em{font-family:var(--font-serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
@@ -310,7 +314,7 @@ header.top nav a.nl{font-size:14px}
 <li data-step="2"><span class="code">02</span><span><strong class="serif">Add capacities</strong><span class="d">Enter a capacity for each code, in its own unit.</span></span></li>
 <li data-step="3"><span class="code">03</span><span><strong class="serif">Send one request</strong><span class="d">The whole docket opens in your mail app as one quote request.</span></span></li>
 </ol>
-<div class="ld-foot"><button type="button" class="ld-enter" id="ld-enter" disabled>Loading <span id="ld-pct">0</span>%</button><span class="mono muted" id="ld-status" style="font-size:12px">Preparing the site</span></div>
+<div class="ld-foot"><button type="button" class="ld-enter" id="ld-enter" disabled>Loading <span id="ld-pct">0</span>%</button><span class="mono muted" id="ld-status" style="font-size:13px">Preparing the site</span></div>
 </div>
 <div class="ticket ld-ticket" aria-hidden="true">
 <div style="padding:20px;display:flex;flex-direction:column;gap:12px">
@@ -325,7 +329,7 @@ header.top nav a.nl{font-size:14px}
 <div class="ld-tear"><span class="ld-tear-fill"></span></div>
 <div style="padding:16px 20px 20px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between">
 <span class="ld-send">Send quote request <span>→</span></span>
-<span class="mono" style="font-size:12px">Opens your mail app</span>
+<span class="mono" style="font-size:13px">Opens your mail app</span>
 </div>
 </div>
 </div>
@@ -434,7 +438,7 @@ header.top nav a.nl{font-size:14px}
 </div>
 </section>
 
-<section id="waste" class="white grid-canvas">
+<section id="waste" class="white">
 <div class="wrap" style="display:flex;flex-direction:column;gap:40px">
 <div class="stack"><span class="hl-oval">Industrial waste disposal support</span><h2 class="hl-statement hl-statement-md">Licensed processors only →<em> so your waste leaves the gate compliant.</em></h2>
 <p class="muted" style="margin:0;max-width:44em">Proper disposal through licensed waste processors keeps you compliant. We help companies dispose of industrial waste responsibly through our network of trusted disposal partners.</p></div>
@@ -460,7 +464,7 @@ header.top nav a.nl{font-size:14px}
 <div class="cat-main">
 <div class="cat-tools">
 <div role="group" aria-label="Filter by category" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center" id="cats"></div>
-<label style="display:flex;flex-direction:column;gap:4px;flex:0 1 280px;min-width:200px"><span class="mono" style="font-size:12px">Search codes</span><input class="input" type="search" id="q" placeholder="e.g. ETP, scrubber, EPR"></label>
+<label style="display:flex;flex-direction:column;gap:4px;flex:0 1 280px;min-width:200px"><span class="mono" style="font-size:13px">Search codes</span><input class="input" type="search" id="q" placeholder="e.g. ETP, scrubber, EPR"></label>
 </div>
 <div class="cat-head mono"><span id="ns"></span><span id="shown"></span></div>
 <ul class="cat-list" id="rows"></ul>
@@ -477,16 +481,16 @@ header.top nav a.nl{font-size:14px}
 <div style="padding:16px 20px 20px;display:flex;flex-direction:column;gap:12px">
 <div id="dk-form" hidden style="display:flex;flex-direction:column;gap:12px">
 <div class="form">
-<label><span class="mono" style="font-size:12px">Name</span><input class="input" data-f="name" autocomplete="name"></label>
-<label><span class="mono" style="font-size:12px">Company</span><input class="input" data-f="company" autocomplete="organization"></label>
-<label><span class="mono" style="font-size:12px">Phone</span><input class="input" type="tel" data-f="phone" autocomplete="tel"></label>
-<label><span class="mono" style="font-size:12px">Site (district)</span><input class="input" data-f="site"></label>
-<label class="full"><span class="mono" style="font-size:12px">Notes</span><textarea class="input" rows="3" data-f="notes" style="resize:vertical"></textarea></label>
+<label><span class="mono" style="font-size:13px">Name</span><input class="input" data-f="name" autocomplete="name"></label>
+<label><span class="mono" style="font-size:13px">Company</span><input class="input" data-f="company" autocomplete="organization"></label>
+<label><span class="mono" style="font-size:13px">Phone</span><input class="input" type="tel" data-f="phone" autocomplete="tel"></label>
+<label><span class="mono" style="font-size:13px">Site (district)</span><input class="input" data-f="site"></label>
+<label class="full"><span class="mono" style="font-size:13px">Notes</span><textarea class="input" rows="3" data-f="notes" style="resize:vertical"></textarea></label>
 </div>
 <a class="hl-btn hl-btn-primary" id="quote" href="#" style="text-decoration:none;justify-content:center">Send quote request <span class="hl-btn-arrow" aria-hidden="true">→</span></a>
 <button type="button" class="btn-link" id="dk-clear" style="align-self:flex-start">Clear docket</button>
 </div>
-<span class="mono" style="font-size:12px;line-height:16px">Opens your mail app with the docket filled in</span>
+<span class="mono" style="font-size:13px;line-height:16px">Opens your mail app with the docket filled in</span>
 <button type="button" class="btn-link" id="dk-howto" hidden style="align-self:flex-start">How the docket works</button>
 </div>
 </aside>
@@ -494,7 +498,7 @@ header.top nav a.nl{font-size:14px}
 </div>
 </section>
 
-<section id="regulations" class="white grid-canvas">
+<section id="regulations" class="white">
 <div class="wrap" style="display:flex;flex-direction:column;gap:32px">
 <div class="split">
 <div class="main stack"><span class="hl-oval">Regulatory index</span><h2 class="hl-statement hl-statement-md">The statutes and orders we work under →<em> cross-referenced to the catalogue.</em></h2></div>
@@ -502,7 +506,7 @@ header.top nav a.nl{font-size:14px}
 </div>
 <div role="tablist" aria-label="Regulation groups" style="display:flex;flex-wrap:wrap;gap:8px" id="reg-tabs"></div>
 <div class="regs" style="border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)">
-<div class="mono muted" style="padding:10px 16px;font-size:12px" id="reg-issuer"></div>
+<div class="mono muted" style="padding:10px 16px;font-size:13px" id="reg-issuer"></div>
 <div id="regs"></div>
 </div>
 </div>
@@ -718,7 +722,7 @@ header.top nav a.nl{font-size:14px}
     $('norows').hidden = rows.length > 0;
     $('rows').innerHTML = rows.map(function (r) {
       var added = inDocket(r.code);
-      return '<li><div class="l"><span class="code muted">' + r.code + '</span><span style="font-size:18px;line-height:1.2">' + esc(r.name) + '</span><span class="muted" style="font-size:14px">' + esc(r.desc) + '</span></div>' +
+      return '<li><div class="l"><span class="code muted">' + r.code + '</span><span style="font-size:18px;line-height:1.2">' + esc(r.name) + '</span><span class="muted" style="font-size:15px">' + esc(r.desc) + '</span></div>' +
         '<div class="r"><span class="mono meta"><span>' + r.cat + '</span><span class="muted">Unit · ' + r.unit + '</span></span>' +
         '<button type="button" class="toggle add" data-add="' + r.code + '" aria-pressed="' + added + '" aria-label="' + (added ? 'Remove ' : 'Add ') + r.code + ' ' + esc(r.name) + (added ? ' from' : ' to') + ' docket">' + (added ? 'Added ✓' : 'Add +') + '</button></div></li>';
     }).join('');
@@ -738,7 +742,7 @@ header.top nav a.nl{font-size:14px}
     $('dk-list').innerHTML = st.docket.map(function (d) {
       return '<li><div class="row" style="align-items:baseline"><span class="code" style="font-size:12px">' + d.code + '</span><button type="button" class="btn-link" data-rm="' + d.code + '" aria-label="Remove ' + d.code + ' from docket">Remove</button></div>' +
         '<span style="font-size:15px;line-height:1.2">' + esc(d.name) + '</span>' +
-        '<label><span class="mono" style="font-size:12px;min-width:72px">Capacity</span><input inputmode="decimal" data-qty="' + d.code + '" value="' + esc(d.qty || '') + '" placeholder="—"><span class="code" style="font-weight:500;font-size:12px;min-width:64px">' + d.unit + '</span></label></li>';
+        '<label><span class="mono" style="font-size:13px;min-width:72px">Capacity</span><input inputmode="decimal" data-qty="' + d.code + '" value="' + esc(d.qty || '') + '" placeholder="—"><span class="code" style="font-weight:500;font-size:12px;min-width:64px">' + d.unit + '</span></label></li>';
     }).join('');
     $('quote').href = quoteHref();
     persist();
