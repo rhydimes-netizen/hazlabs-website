@@ -96,6 +96,9 @@ html.hz-loading body{overflow:hidden}
 @keyframes ld-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
 @media (prefers-reduced-motion:reduce){.ld-enter:not(:disabled),.ld-enter .arrow{animation:none}}
 .ld-ticket{flex:0 1 400px;min-width:0;width:100%}
+.ld-tk-body{padding:20px;display:flex;flex-direction:column;gap:12px}
+.ld-tk-title{font-size:40px;line-height:1}
+.ld-tk-count{font-size:52px;line-height:.9}
 .ld-rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
 .ld-rows li{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid var(--rule);line-height:1.2}
 .ld-qty{display:flex;gap:8px;align-items:center;font-size:12px}
@@ -337,6 +340,30 @@ header.top nav a.nl{font-size:14px}
   .cat-bar .code{font-size:11px}
   .cat-sec #docket{box-shadow:6px 6px 0 0 var(--amber)}
 }
+
+/* ---------- loading screen on phones and tablets ----------
+   One column in reading order: welcome, intro, then the sample docket right
+   under its heading, then the steps; the Enter button stays pinned to the
+   bottom so the docket can be scrolled through without losing it. */
+@media (max-width:899px){
+  .loader{align-items:flex-start;padding-bottom:0}
+  .ld-inner{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:20px}
+  .ld-copy{display:contents}
+  .ld-brand{order:1}
+  .ld-intro{order:2}
+  #ld-title{order:3}
+  .ld-ticket{order:4;flex:none;align-self:stretch}
+  .ld-steps{order:5}
+  .ld-steps .d{display:block;font-size:14px}
+  .ld-foot{order:6;position:sticky;bottom:0;z-index:2;margin:0 calc(-1 * var(--gutter));padding:12px var(--gutter) 16px;
+    background:var(--paper);border-top:1px solid var(--rule)}
+  /* "or press Enter" means nothing on a touch screen. */
+  #ld-status{display:none}
+  .ld-tk-body{padding:16px;gap:10px}
+  .ld-tk-title{font-size:30px}
+  .ld-tk-count{font-size:40px}
+  .ld-rows li{padding:8px 0}
+}
 </style>
 </head>
 <body>
@@ -358,9 +385,9 @@ header.top nav a.nl{font-size:14px}
 <div class="ld-foot"><button type="button" class="ld-enter" id="ld-enter" disabled>Loading <span id="ld-pct">0</span>%</button><span class="mono muted" id="ld-status" style="font-size:13px">Preparing the site</span></div>
 </div>
 <div class="ticket ld-ticket" aria-hidden="true">
-<div style="padding:20px;display:flex;flex-direction:column;gap:12px">
+<div class="ld-tk-body">
 <div class="row code"><span>HZL/DOC.QT-EXAMPLE</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div>
-<div class="row" style="align-items:flex-end"><span class="serif" style="font-size:40px;line-height:1">Your docket</span><span class="fig" style="font-size:52px;line-height:.9" id="ld-count">00</span></div>
+<div class="row" style="align-items:flex-end"><span class="serif ld-tk-title">Your docket</span><span class="fig ld-tk-count" id="ld-count">00</span></div>
 <ul class="ld-rows">
 <li><span class="code" style="font-size:12px">PCM-ETP-01</span><span>Effluent treatment plant</span><span class="ld-qty"><span class="mono">Capacity</span><span class="ld-input" data-type="5"></span><span class="code">KLD</span></span></li>
 <li><span class="code" style="font-size:12px">EC-CTO-01</span><span>TNPCB Consent to Operate</span><span class="ld-qty"><span class="mono">Capacity</span><span class="ld-input" data-type="1"></span><span class="code">units</span></span></li>

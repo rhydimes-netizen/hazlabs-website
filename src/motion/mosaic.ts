@@ -22,6 +22,10 @@ export function initMosaic(reduced: boolean) {
   const mosaic = section?.querySelector<HTMLElement>('.mosaic');
   if (!section || !mosaic) return { openMenu: () => {} };
 
+  // The menu copies the mosaic, so copy it before the scroll animations below
+  // set its tiles to their hidden starting state.
+  const openMenu = buildMenu(mosaic, reduced);
+
   if (!reduced) {
     const tiles = Array.from(mosaic.children) as HTMLElement[];
     const head = section.querySelector('.index-head');
@@ -61,7 +65,7 @@ export function initMosaic(reduced: boolean) {
     });
   }
 
-  return { openMenu: buildMenu(mosaic, reduced) };
+  return { openMenu };
 }
 
 // Full-screen menu: a copy of the mosaic on the grid canvas.
@@ -79,6 +83,7 @@ function buildMenu(source: HTMLElement, reduced: boolean) {
   bar.innerHTML =
     '<span class="hl-oval">Sections</span><button type="button" class="hz-menu-close">Close <span aria-hidden="true">×</span></button>';
   const grid = source.cloneNode(true) as HTMLElement;
+  grid.querySelectorAll<HTMLElement>('[style]').forEach((el) => el.removeAttribute('style'));
   grid.setAttribute('aria-label', 'Sections');
   menu.append(bar, grid);
   document.body.appendChild(menu);
