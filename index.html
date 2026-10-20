@@ -22,6 +22,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 @font-face{font-family:"Instrument Serif";src:url("fonts/InstrumentSerif-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
 @font-face{font-family:"Fira Code";src:url("fonts/FiraCode-500.woff2") format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Fira Code";src:url("fonts/FiraCode-700.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Bebas Neue";src:url("fonts/BebasNeue-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
 :root{--paper:#fff;--paper-soft:#f6f6f8;--haze:#e3e0fb;--ink:#3f33b4;--ink-deep:#221c66;--ink-muted:#6159c9;--ink-tint:#ecebf9;--on-ink:#fff;--rule:#c6c2ee;--violet:#773fd9;--signal:#ffcb3a;--amber:#ffa630;--amber-deep:#f0901a;--on-amber:#221c66;--crimson:#931621;--crimson-deep:#6e0f18;--on-crimson:#fff;--logo-ground:#fff;--focus:#773fd9;
 --font-sans:"Instrument Sans Variable","Instrument Sans",system-ui,sans-serif;--font-head:"Bricolage Grotesque Variable","Bricolage Grotesque",system-ui,sans-serif;--font-serif:"Instrument Serif",Georgia,serif;--font-mono:"Fira Code",ui-monospace,Menlo,monospace;--font-display:var(--font-head);
 --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;--radius-0:0;--radius-ticket:20px;--radius-full:999px;--shadow-ticket:5px 5px 40px 0 rgba(0,0,0,.12);--border-hairline:1px;--border-tear:2px;--gutter:clamp(16px,5vw,64px)}
@@ -64,12 +65,19 @@ section{scroll-margin-top:0}
 body{padding-top:var(--hdr)}
 main section[id]{scroll-margin-top:var(--hdr-c)}
 header.top{position:fixed;top:0;left:0;right:0;z-index:20;background:#fff;border-bottom:1px solid var(--rule);transition:box-shadow .3s}
-header.top .bar{max-width:1280px;height:calc(var(--hdr) - 1px);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:10px 32px;transition:height .3s cubic-bezier(.4,0,.2,1)}
+header.top .bar{position:relative;max-width:1280px;height:calc(var(--hdr) - 1px);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:10px 32px;transition:height .3s cubic-bezier(.4,0,.2,1)}
 header.top.is-compact{box-shadow:0 6px 24px rgba(34,28,102,.08)}
 header.top.is-compact .bar{height:calc(var(--hdr-c) - 1px)}
 header.top.is-compact .logo img{height:26px}
-.brand-name{display:block;max-width:0;overflow:hidden;opacity:0;white-space:nowrap;font-family:var(--font-head);font-weight:700;font-size:18px;letter-spacing:-.015em;color:var(--ink);transition:max-width .35s cubic-bezier(.4,0,.2,1),opacity .25s}
-header.top.is-compact .brand-name{max-width:10em;opacity:1}
+/* The compact bar centres the company name in Bebas Neue, the face of the logo's
+   wordmark, with the same soft offset shadow; the section links step aside for it
+   (the strip, the Sections menu and the pill still carry navigation). */
+.brand-name{position:absolute;left:50%;top:50%;transform:translate(-50%,-30%);opacity:0;pointer-events:none;white-space:nowrap;
+  font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:30px;line-height:1;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink-deep);text-shadow:2px 2px 0 rgba(34,28,102,.18);transition:opacity .3s,transform .35s cubic-bezier(.4,0,.2,1)}
+header.top.is-compact .brand-name{opacity:1;transform:translate(-50%,-50%)}
+header.top nav{transition:opacity .25s,visibility .25s}
+header.top.is-compact nav{opacity:0;visibility:hidden}
 header.top nav{display:flex;gap:4px 22px;align-items:center}
 header.top nav a.nl{text-decoration:none;padding:12px 0;white-space:nowrap}header.top nav a.nl:hover{text-decoration:underline;text-underline-offset:4px}
 .logo{display:flex;align-items:center;gap:10px;padding:4px;text-decoration:none}.logo img{display:block;height:40px;width:auto;transition:height .3s cubic-bezier(.4,0,.2,1)}
