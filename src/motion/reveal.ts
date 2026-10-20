@@ -112,6 +112,20 @@ export function initReveals(reduced: boolean) {
     onEnter(list, { y: 18, autoAlpha: 0, duration: 0.6, stagger: 0.04 }, list.children);
   }
 
+  // The catalogue's frame opens up from a smaller rounded window as it arrives,
+  // then lets go of the clip so its shadow and the docket's show in full.
+  const frame = document.querySelector('.cat-frame');
+  if (frame) {
+    // Explicit end value: GSAP can't tween an inset() towards "none".
+    gsap.fromTo(frame, { clipPath: 'inset(8% 10% 8% 10% round 20px)' }, {
+      clipPath: 'inset(0% 0% 0% 0% round 20px)',
+      duration: 1.1,
+      ease: 'power3.inOut',
+      clearProps: 'clipPath',
+      scrollTrigger: { trigger: frame, start: 'top 85%', once: true },
+    });
+  }
+
   // The catalogue's ink header bar draws across.
   for (const line of $$('.cat-head')) {
     gsap.from(line, {

@@ -38,6 +38,16 @@ export function initPill(reduced: boolean) {
 
   const count = document.getElementById('dk-count-nav');
   const docket = document.getElementById('pill-docket');
+
+  // The catalogue's pinned bar repeats the docket count, kept in step with the pill.
+  if (count) {
+    const mirror = () => {
+      for (const el of document.querySelectorAll<HTMLElement>('[data-docket-mirror]')) el.textContent = count.textContent;
+    };
+    mirror();
+    new MutationObserver(mirror).observe(count, { childList: true, characterData: true, subtree: true });
+  }
+
   if (count && docket && !reduced) {
     // The page rewrites the count on every docket render; only bump on a real change.
     let last = count.textContent;
