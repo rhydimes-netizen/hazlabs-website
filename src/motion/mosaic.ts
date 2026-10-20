@@ -76,6 +76,8 @@ function buildMenu(source: HTMLElement, reduced: boolean) {
   menu.setAttribute('role', 'dialog');
   menu.setAttribute('aria-modal', 'true');
   menu.setAttribute('aria-label', 'Sections');
+  // Smooth scrolling is stopped while the menu is open; let touch and wheel scroll the menu itself.
+  menu.setAttribute('data-lenis-prevent', '');
   menu.hidden = true;
 
   const bar = document.createElement('div');
