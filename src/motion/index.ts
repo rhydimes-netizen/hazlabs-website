@@ -12,6 +12,7 @@ import { initMosaic } from './mosaic';
 import { initStrip } from './strip';
 import { initPill } from './pill';
 import { initLoader } from './loader';
+import { initDocket } from './docket';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -44,6 +45,7 @@ document.addEventListener('click', (e) => {
 
 initButtons();
 initPill(reduced);
+initDocket(reduced);
 const loaderDone = initLoader(reduced);
 
 // Headlines are split into lines, so wait for the web fonts (briefly) to get
