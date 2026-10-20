@@ -11,6 +11,7 @@ import { initButtons } from './buttons';
 import { initMosaic } from './mosaic';
 import { initStrip } from './strip';
 import { initPill } from './pill';
+import { initHeader } from './header';
 import { initLoader } from './loader';
 import { initMobileNote } from './mobile-note';
 
@@ -44,6 +45,7 @@ document.addEventListener('click', (e) => {
 });
 
 initButtons();
+initHeader();
 initPill(reduced);
 const loaderDone = initLoader(reduced);
 

@@ -10,15 +10,25 @@ export function lockScroll(on: boolean) {
   else lenis?.start();
 }
 
-// The header is only sticky above 900px, so anchors offset by its height there.
+// The fixed header is compact whenever the page is scrolled, so anything that
+// lands below it (anchors, pins, the strip's section check) clears its compact
+// height, read from the --hdr-c token.
+export function compactHeader() {
+  return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hdr-c')) || 0;
+}
 export function headerOffset() {
   const header = document.querySelector<HTMLElement>('header.top');
-  return header && getComputedStyle(header).position === 'sticky' ? header.offsetHeight + 8 : 0;
+  return header && getComputedStyle(header).position === 'fixed' ? compactHeader() + 8 : 0;
 }
 
 export function scrollToTarget(target: HTMLElement | number, immediate = false) {
+  // The hero goes to the very top, where the header is full size again.
   const top =
-    typeof target === 'number' ? target : target.getBoundingClientRect().top + scrollY - headerOffset();
+    typeof target === 'number'
+      ? target
+      : target.id === 'top'
+        ? 0
+        : target.getBoundingClientRect().top + scrollY - headerOffset();
   if (lenis) lenis.scrollTo(top, { immediate });
   else window.scrollTo({ top });
 }

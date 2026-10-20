@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { lockScroll } from './scroll';
+import { compactHeader, lockScroll } from './scroll';
 
 // Where each tile flies in from while the index assembles: whole tile-widths
 // off to a side, so the mosaic reads as blocks sliding into a grid.
@@ -33,7 +33,8 @@ export function initMosaic(reduced: boolean) {
     mm.add('(min-width: 900px)', () => {
       gsap
         .timeline({
-          scrollTrigger: { trigger: section, start: 'top top', end: '+=90%', pin: true, scrub: 0.6 },
+          // Pins just below the compact header.
+          scrollTrigger: { trigger: section, start: () => `top ${compactHeader()}px`, end: '+=90%', pin: true, scrub: 0.6 },
         })
         .from(head, { y: 40, autoAlpha: 0, duration: 0.3, ease: 'power2.out' }, 0)
         .from(
