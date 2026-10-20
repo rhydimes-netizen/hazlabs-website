@@ -44,8 +44,6 @@ export function initPill(reduced: boolean) {
     new MutationObserver(() => {
       if (count.textContent === last) return;
       last = count.textContent;
-      // A code flying in from the catalogue bumps the button itself when it lands.
-      if (docket.dataset.flying) return;
       gsap.fromTo(docket, { scale: 1.12 }, { scale: 1, duration: 0.5, ease: 'back.out(3)', clearProps: 'transform' });
     }).observe(count, { childList: true, characterData: true, subtree: true });
   }

@@ -112,11 +112,8 @@ html.hz-loading body{overflow:hidden}
 .pill summary{list-style:none;border-radius:999px 0 0 999px}.pill summary::-webkit-details-marker{display:none}
 .pill a:hover,.pill summary:hover{background:var(--ink-tint)}
 .pill .sep{width:1px;background:var(--rule);align-self:stretch;margin:8px 0}
-.pill .pill-cta{background:var(--ink);color:var(--on-ink);border-radius:0 999px 999px 0;font-family:var(--font-serif);font-style:italic;font-size:16px;text-transform:none}
-.pill .pill-cta:hover{background:var(--ink-deep)}
-/* Lime is the docket's colour: the pill button, the index tile and its own section. */
-.pill #pill-docket{background:var(--lime);color:var(--on-lime);font-weight:600}
-.pill #pill-docket:hover,.pill #pill-docket[aria-expanded="true"]{background:var(--lime-deep)}
+.pill .pill-cta{background:var(--lime);color:var(--on-lime);border-radius:0 999px 999px 0;font-family:var(--font-serif);font-style:italic;font-size:16px;text-transform:none}
+.pill .pill-cta:hover{background:var(--lime-deep)}
 .pill .count{font-weight:700}
 .pill details{position:relative}
 .pill details[open] summary{background:var(--ink-tint)}
@@ -149,7 +146,7 @@ html.hz-loading body{overflow:hidden}
 /* While pinned the whole index must fit one screen, so the mosaic takes what the heading leaves. */
 .index-sec .wrap{display:flex;flex-direction:column;gap:24px;padding-top:32px;padding-bottom:32px}
 .index-head{display:flex;flex-direction:column;gap:16px;align-items:flex-start;background:var(--paper);padding:16px 24px 16px 0;max-width:900px}
-.mosaic{display:grid;gap:10px;grid-template-columns:2fr 3.5fr 3fr 2fr 2.2fr;grid-template-rows:4fr 1fr 4fr;height:clamp(500px,calc(100vh - 260px),760px)}
+.mosaic{display:grid;gap:10px;grid-template-columns:2fr 3.5fr 3fr 2fr;grid-template-rows:4fr 1fr 4fr;height:clamp(500px,calc(100vh - 260px),760px)}
 .mosaic .tile:nth-child(1){grid-column:1;grid-row:1/3}
 .mosaic .tile:nth-child(2){grid-column:2;grid-row:1}
 .mosaic .tile:nth-child(3){grid-column:3;grid-row:1/3}
@@ -158,7 +155,6 @@ html.hz-loading body{overflow:hidden}
 .mosaic .tile:nth-child(6){grid-column:2;grid-row:2/4}
 .mosaic .tile:nth-child(7){grid-column:3;grid-row:3}
 .mosaic .tile:nth-child(8){grid-column:4;grid-row:2/4}
-.mosaic .tile:nth-child(9){grid-column:5;grid-row:1/4}
 .tile{position:relative;display:flex;flex-direction:column;gap:12px;min-width:0;padding:24px;text-decoration:none;border-radius:0;overflow:hidden;transition:border-radius .35s cubic-bezier(.4,0,.2,1),padding .35s cubic-bezier(.4,0,.2,1)}
 .tile:hover,.tile:focus-visible{border-radius:var(--radius-ticket);padding:32px}
 .tile:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
@@ -190,7 +186,6 @@ html.hz-loading body{overflow:hidden}
   .mosaic .tile:nth-child(6){grid-column:1;grid-row:8/11}
   .mosaic .tile:nth-child(7){grid-column:2;grid-row:6/9}
   .mosaic .tile:nth-child(8){grid-column:2;grid-row:9/11}
-  .mosaic .tile:nth-child(9){grid-column:1/3;grid-row:11/13}
   .tile{padding:16px;gap:8px}
   .tile:hover,.tile:focus-visible,.tile:active{padding:20px}
   .tile-title{font-size:20px}
@@ -256,7 +251,8 @@ html.hz-loading body{overflow:hidden}
 .cat-list .r{flex:1 1 260px;display:flex;gap:16px;align-items:center;justify-content:flex-end}
 .cat-list .meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end;font-size:13px}
 .add{min-width:112px;min-height:44px;padding:10px 16px;font-family:var(--font-serif);font-style:italic;font-size:16px}
-#docket-card{flex:0 1 460px;min-width:0}
+#docket{flex:1 1 340px;min-width:0;position:sticky;top:24px;scroll-margin-top:24px}
+@media (max-width:900px){#docket{position:static}}
 .dk-list{list-style:none;margin:0;padding:0}
 .dk-list li{padding:12px 0;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
 .dk-list label{display:flex;gap:8px;align-items:center}
@@ -315,47 +311,6 @@ body{line-height:1.5;font-weight:450;font-feature-settings:"ss01" off}
 header.top nav a.nl{font-size:14px}
 @media (max-width:899px){.tile-title{font-size:22px}.tile .mono{font-size:11px;line-height:14px}.tile .fig{font-size:52px}}
 @media (min-width:600px) and (max-width:899px){.tile-title{font-size:26px}.tile .mono{font-size:13px;line-height:17px}.tile .fig{font-size:68px}}
-
-/* ---------- the docket: its own lime section ---------- */
-.docket-sec{background:var(--lime);color:var(--on-lime)}
-.docket-sec .wrap.docket-wrap{display:flex;flex-wrap:wrap;gap:40px 64px;align-items:flex-start}
-.docket-intro{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:24px;align-items:flex-start}
-.docket-sec .hl-statement,.docket-sec .hl-oval{color:var(--on-lime);border-color:var(--on-lime)}
-.docket-steps{align-self:stretch;list-style:none;margin:0;padding:0;border-top:2px solid var(--on-lime)}
-.docket-steps li{display:flex;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(34,28,102,.25)}
-.docket-steps strong{display:block;font-family:var(--font-head);font-weight:700;font-size:24px;letter-spacing:-.015em;line-height:1.1}
-.docket-steps strong+span{display:block;margin-top:4px;font-size:16px}
-.docket-steps .code{flex:none;width:28px}
-/* The step the visitor is on: a filled number and a marker bar. */
-.docket-steps li.is-now{box-shadow:inset 6px 0 0 var(--on-lime);padding-left:16px}
-.docket-steps li.is-now .code{background:var(--on-lime);color:var(--lime);text-align:center;padding:2px 0}
-.docket-steps li.is-done{opacity:.6}
-.docket-back{border-color:var(--on-lime)}
-#docket-card{box-shadow:12px 12px 0 0 var(--on-lime);border:2px solid var(--on-lime)}
-.tile-docket .fig{font-size:clamp(64px,7vw,120px)}
-
-/* ---------- docket tray: opens from the pill ---------- */
-.dk-tray{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);width:340px;max-width:calc(100vw - 24px);
-  background:var(--paper);color:var(--ink);border:2px solid var(--on-lime);border-radius:20px;box-shadow:var(--shadow-ticket);
-  font-family:var(--font-sans);text-transform:none;white-space:normal;overflow:hidden}
-.dk-tray[hidden]{display:none}
-.dk-tray-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;background:var(--lime);color:var(--on-lime)}
-.dk-tray-head strong{font-family:var(--font-head);font-size:20px;letter-spacing:-.015em}
-.dk-tray-head .fig{font-size:40px}
-.dk-tray ul{list-style:none;margin:0;padding:6px 18px;max-height:240px;overflow:auto}
-.dk-tray li{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid var(--rule);font-size:14px;line-height:1.3}
-.dk-tray li:last-child{border-bottom:0}
-.dk-tray li .muted{font-size:13px}
-.dk-tray .dk-tray-empty{padding:16px 18px;margin:0;font-size:15px}
-.dk-tray-actions{display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px 16px;border-top:2px dashed var(--ink)}
-.dk-tray-actions a{min-height:44px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14px;border:1px solid var(--ink);color:var(--ink);border-radius:0}
-.dk-tray-actions a.go{background:var(--lime);color:var(--on-lime);border-color:var(--on-lime)}
-.dk-tray-actions a:hover{background:var(--ink-tint)}.dk-tray-actions a.go:hover{background:var(--lime-deep)}
-@media (max-width:480px){.dk-tray{left:0;right:0;width:auto;transform:none}}
-
-/* ---------- a code flying from its row into the pill ---------- */
-.dk-fly{position:fixed;left:0;top:0;z-index:60;pointer-events:none;padding:6px 10px;background:var(--lime);color:var(--on-lime);
-  border:2px solid var(--on-lime);font-family:var(--font-mono);font-weight:700;font-size:12px;line-height:1;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -439,12 +394,11 @@ header.top nav a.nl{font-size:14px}
 <a class="tile t-ink-deep" href="#about"><span class="tile-top"><span class="code">HZL/ABT.01</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">About</span><span class="tile-art"><span class="fig">3</span><span class="mono">Lines of work, one team</span></span></a>
 <a class="tile t-haze" href="#engineering"><span class="tile-top"><span class="code">HZL/ENG.02</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Engineering</span><span class="tile-art"><span class="fig">1<span class="fig-dash">–</span>10</span><span class="mono">KLD effluent treatment capacity</span></span></a>
 <a class="tile t-ink" href="#consulting"><span class="tile-top"><span class="code">HZL/SVC.03</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Consulting</span><span class="tile-art"><span class="fig-row"><span class="fig">6</span><span class="dot" aria-hidden="true"></span></span><span class="mono">Consents and authorisations we file</span></span></a>
-<a class="tile t-paper" href="#catalogue"><span class="tile-top"><span class="code">HZL/CAT.04</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Catalogue</span><span class="tile-art"><span class="fig">23</span><span class="mono">Product codes, one docket</span></span></a>
+<a class="tile t-lime" href="#catalogue"><span class="tile-top"><span class="code">HZL/CAT.04</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Catalogue</span><span class="tile-art"><span class="fig">23</span><span class="mono">Product codes, one docket</span></span></a>
 <a class="tile t-teal" href="#waste"><span class="tile-top"><span class="code">HZL/WST.05</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Waste disposal</span><span class="tile-art"><span class="fig">7</span><span class="mono">Licensed disposal partners</span></span></a>
 <a class="tile t-soft" href="#regulations"><span class="tile-top"><span class="code">HZL/REG.06</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Regulations</span><span class="tile-art"><span class="fig">19</span><span class="mono">Statutes, rules and orders indexed</span></span></a>
 <a class="tile t-ink-deep" href="#photos"><span class="tile-top"><span class="code">HZL/IMG.07</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Site photos</span><span class="tile-art"><svg class="tile-cam" viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M3 8h3.5l1.5-2.5h8L17.5 8H21v11H3z"/><circle cx="12" cy="13.5" r="3.5"/></svg><span class="mono">Plants, collectors and panels as built</span></span></a>
 <a class="tile t-haze" href="#customers"><span class="tile-top"><span class="code">HZL/CLT.08</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Customers</span><span class="tile-art"><span class="fig">36</span><span class="mono">Clients we work with</span></span></a>
-<a class="tile t-lime tile-docket" href="#docket"><span class="tile-top"><span class="code">HZL/DOC.09</span><svg class="tile-cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></span><span class="tile-title">Your docket</span><span class="tile-art"><span class="fig" data-docket-count>00</span><span class="mono">Codes in your docket, sent to us as one request →</span></span></a>
 </nav>
 </div>
 </section>
@@ -517,8 +471,8 @@ header.top nav a.nl{font-size:14px}
 <section id="catalogue" class="soft">
 <div class="wrap" style="display:flex;flex-direction:column;gap:32px">
 <div class="split">
-<div class="main stack"><span class="hl-oval">Catalogue</span><h2 class="hl-statement hl-statement-md">Browse by product code, add what you need →<em> it lands in your docket.</em></h2></div>
-<p class="side">Switch departments without losing your picks. Every code you add goes into your docket below, ready for its capacity.</p>
+<div class="main stack"><span class="hl-oval">Catalogue</span><h2 class="hl-statement hl-statement-md">Browse by product code, add what you need →<em> we’ll quote the whole docket.</em></h2></div>
+<p class="side">Switch departments without losing your picks. Add a capacity for each code in the docket, then send it to us as one request.</p>
 </div>
 <div class="depts" role="tablist" aria-label="Departments" id="depts"></div>
 <div class="cat-wrap">
@@ -531,24 +485,7 @@ header.top nav a.nl{font-size:14px}
 <ul class="cat-list" id="rows"></ul>
 <p class="mono" id="norows" hidden style="margin:0;padding:24px 16px">No codes match. Clear the search or pick another filter.</p>
 </div>
-
-</div>
-</div>
-</section>
-
-<section id="docket" class="docket-sec" aria-labelledby="docket-title">
-<div class="wrap docket-wrap">
-<div class="docket-intro">
-<span class="hl-oval">Your docket</span>
-<h2 class="hl-statement hl-statement-md" id="docket-title">One request for everything you need →<em> we’ll quote the whole docket.</em></h2>
-<ol class="docket-steps">
-<li data-step="1"><span class="code">01</span><span><strong>Pick codes</strong><span>Add them from the catalogue above.</span></span></li>
-<li data-step="2"><span class="code">02</span><span><strong>Add capacities</strong><span>Enter one for each code, in its own unit.</span></span></li>
-<li data-step="3"><span class="code">03</span><span><strong>Send one request</strong><span>The whole docket opens in your mail app as one email.</span></span></li>
-</ol>
-<a class="hl-btn hl-btn-secondary docket-back" href="#catalogue" style="text-decoration:none">Back to the catalogue <span class="hl-btn-arrow" aria-hidden="true">↑</span></a>
-</div>
-<aside id="docket-card" class="ticket" aria-label="Quote docket">
+<aside id="docket" class="ticket" aria-label="Quote docket">
 <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
 <div class="row code"><span>HZL/DOC.QT-DRAFT</span><svg class="cross" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor"/><path d="M8 0v16M0 8h16" stroke="currentColor"/></svg></div>
 <div class="row" style="align-items:flex-end"><h3 class="serif" style="margin:0;font-size:44px;line-height:1">Your docket</h3><span class="fig" style="font-size:56px;line-height:.9" id="dk-count">00</span></div>
@@ -573,8 +510,8 @@ header.top nav a.nl{font-size:14px}
 </div>
 </aside>
 </div>
+</div>
 </section>
-
 
 <section id="regulations" class="white">
 <div class="wrap" style="display:flex;flex-direction:column;gap:32px">
@@ -663,11 +600,10 @@ header.top nav a.nl{font-size:14px}
 <li><a href="#consulting"><span class="n">04</span>Consulting</a></li>
 <li><a href="#waste"><span class="n">05</span>Waste disposal</a></li>
 <li><a href="#catalogue"><span class="n">06</span>Catalogue</a></li>
-<li><a href="#docket"><span class="n">07</span>Docket</a></li>
-<li><a href="#regulations"><span class="n">08</span>Regulations</a></li>
-<li><a href="#photos"><span class="n">09</span>Site photos</a></li>
-<li><a href="#customers"><span class="n">10</span>Customers</a></li>
-<li><a href="#contact"><span class="n">11</span>Contact</a></li>
+<li><a href="#regulations"><span class="n">07</span>Regulations</a></li>
+<li><a href="#photos"><span class="n">08</span>Site photos</a></li>
+<li><a href="#customers"><span class="n">09</span>Customers</a></li>
+<li><a href="#contact"><span class="n">10</span>Contact</a></li>
 </ol>
 </details>
 <span class="sep" aria-hidden="true"></span>

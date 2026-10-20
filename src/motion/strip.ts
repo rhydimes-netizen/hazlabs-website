@@ -16,7 +16,7 @@ export function initStrip(reduced: boolean, openMenu: (from?: HTMLElement) => vo
 
   const entries: Entry[] = sections.map((section) => {
     const navLink = document.querySelector<HTMLAnchorElement>(`header.top a.nl[href="#${section.id}"]`);
-    const fallback: Record<string, string> = { top: 'Intro', index: 'Index', docket: 'Docket', contact: 'Contact' };
+    const fallback: Record<string, string> = { top: 'Intro', index: 'Index', contact: 'Contact' };
     const name = navLink?.textContent?.trim() || fallback[section.id] || section.id;
     const navLinks = Array.from(
       document.querySelectorAll<HTMLAnchorElement>(
