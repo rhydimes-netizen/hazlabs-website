@@ -12,6 +12,7 @@ import { initMosaic } from './mosaic';
 import { initStrip } from './strip';
 import { initPill } from './pill';
 import { initLoader } from './loader';
+import { initMobileNote } from './mobile-note';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -56,6 +57,8 @@ fontsOrTimeout.then(async () => {
   initReveals(reduced);
   await loaderDone;
   initHero(reduced);
+  // After the loading screen, so the tip doesn't compete with it.
+  initMobileNote(reduced);
   // The intro has hidden its pieces by now; the hero can be shown.
   document.documentElement.classList.remove('motion-pending');
 

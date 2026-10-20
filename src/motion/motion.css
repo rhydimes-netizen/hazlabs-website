@@ -79,3 +79,23 @@ header.top nav a.nl[aria-current] { text-decoration: underline; text-decoration-
   .hz-roll-vis i, .hl-btn-arrow, .tile, .tile-art, .hz-strip-menu { transition: none; }
   .hl-btn:hover .hz-roll-vis i, .hl-btn:focus-visible .hz-roll-vis i, .hl-btn:hover .hl-btn-arrow, .tile:hover .tile-art { transform: none; }
 }
+
+/* ---------- narrow screens: a dismissible tip to use the desktop site ---------- */
+.hz-note {
+  position: fixed; top: 12px; left: 12px; right: 12px; z-index: 40;
+  display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 16px;
+  background: var(--ink-deep); color: var(--on-ink); border-radius: var(--radius-ticket); box-shadow: var(--shadow-ticket);
+}
+.hz-note-text { flex: 1; min-width: 0; margin: 0; font-size: 14px; line-height: 1.35; }
+.hz-note-text strong { font-family: var(--font-head); font-weight: 700; }
+.hz-note-text em { font-family: var(--font-serif); font-size: 16px; }
+.hz-note-actions { flex: none; display: flex; align-items: center; gap: 4px; }
+.hz-note-ok {
+  min-height: 44px; padding: 0 16px; border: 0; border-radius: 0; background: var(--amber); color: var(--on-amber);
+  font-family: var(--font-sans); font-weight: 600; font-size: 14px; cursor: pointer;
+}
+.hz-note-x {
+  width: 44px; height: 44px; border: 0; background: transparent; color: var(--on-ink); font-size: 24px; line-height: 1; cursor: pointer;
+}
+.hz-note-ok:focus-visible, .hz-note-x:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (min-width: 900px) { .hz-note { display: none; } }
